@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - SpeechCraft Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --beige-light: #f5f1e8;
+            --beige-medium: #e8dcc4;
+            --beige-dark: #c9b896;
+            --beige-darker: #a68f6f;
+            --accent: #8b7355;
+            --accent-light: #a68f6f;
+            --text-dark: #3d3429;
+            --text-light: #6b5d4f;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige-medium) 100%);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            padding: 0.8rem 5%;
+            background: linear-gradient(135deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            font-family: 'Palatino', serif;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        /* Page Header */
+        .page-header {
+            height: 60vh;
+            background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige-medium) 50%, var(--beige-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(233, 220, 196, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(201, 184, 150, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -150px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-20px) translateX(10px); }
+        }
+
+        .page-header-content {
+            max-width: 900px;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-family: 'Palatino', serif;
+            letter-spacing: 2px;
+        }
+
+        .page-header p {
+            font-size: 1.4rem;
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-family: 'Palatino', serif;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 4rem;
+            font-style: italic;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Overview */
+        #services-overview {
+            background: linear-gradient(180deg, var(--beige-light) 0%, var(--beige-medium) 100%);
+        }
+
+        .services-intro {
+            max-width: 1000px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .services-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-category {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--beige-darker) 0%, var(--accent) 100%);
+        }
+
+        .service-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .service-category:hover .category-icon {
+            transform: scale(1.2);
+        }
+
+        .service-category h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .service-category p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--beige-light);
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .category-link:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Service Details */
+        #service-details {
+            background: linear-gradient(180deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+        }
+
+        .service-tabs {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Georgia', serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab-button:hover {
+            background: var(--beige-light);
+            transform: translateY(-3px);
+        }
+
+        .tab-button.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1.5rem;
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            color: var(--accent);
+        }
+
+        .service-title {
+            font-size: 2.2rem;
+            color: var(--text-dark);
+        }
+
+        .service-description {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--beige-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-card h4 i {
+            color: var(--accent);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .service-cta {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--beige-medium);
+        }
+
+        .service-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-weight: 600;
+        }
+
+        .cta-button:hover {
+            background: var(--beige-darker);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Training Formats */
+        #training-formats {
+            background: linear-gradient(180deg, var(--beige-dark) 0%, var(--beige-medium) 100%);
+        }
+
+        .formats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .format-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .format-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--beige-darker) 0%, var(--accent) 100%);
+        }
+
+        .format-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .format-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .format-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .format-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .format-features {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .format-features li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .format-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        #cta {
+            background: linear-gradient(135deg, var(--beige-darker) 0%, var(--accent) 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 5%;
+        }
+
+        #cta .section-title,
+        #cta .section-subtitle {
+            color: white;
+        }
+
+        #cta .section-title::after {
+            background: white;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-weight: 600;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            background: var(--beige-light);
+        }
+
+        .cta-button.outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .cta-button.outline:hover {
+            background: white;
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--beige-medium);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-column p, .footer-column a {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--beige-darker);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: linear-gradient(135deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.1);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .page-header {
+                height: 50vh;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-header p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-categories,
+            .formats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .service-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .service-features {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="logo">
+            <i class="fas fa-comments logo-icon"></i>
+            SpeechCraft Academy
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>Our Services</h1>
+            <p>Comprehensive Communication Training Programs</p>
+        </div>
+    </section>
+
+    <section id="services-overview">
+        <h2 class="section-title fade-in">What We Offer</h2>
+        <p class="section-subtitle fade-in">Transform your communication skills with our specialized training programs</p>
+        
+        <div class="services-intro fade-in">
+            <p>At SpeechCraft Academy, we offer a comprehensive range of communication training programs designed to empower individuals and organizations. Our evidence-based approach combines practical skills with theoretical knowledge to deliver lasting results.</p>
+        </div>
+
+        <div class="services-categories">
+            <div class="service-category fade-in">
+                <div class="category-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3>Public Speaking</h3>
+                <p>Master the art of confident public speaking, from speech writing to delivery techniques and audience engagement.</p>
+                <a href="#public-speaking" class="category-link">Learn More</a>
+            </div>
+            <div class="service-category fade-in">
+                <div class="category-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Business Communication</h3>
+                <p>Develop winning pitches, proposals, and negotiation skills to advance your business or career.</p>
+                <a href="#business-pitching" class="category-link">Learn More</a>
+            </div>
+            <div class="service-category fade-in">
+                <div class="category-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Facilitation Training</h3>
+                <p>Learn to lead dynamic discussions, manage diverse viewpoints, and foster collaboration.</p>
+                <a href="#facilitation" class="category-link">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="service-details">
+        <h2 class="section-title fade-in">Service Details</h2>
+        <p class="section-subtitle fade-in">Explore our comprehensive training programs</p>
+
+        <div class="service-tabs">
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="public-speaking">Public Speaking</button>
+                <button class="tab-button" data-tab="business-pitching">Business Pitching</button>
+                <button class="tab-button" data-tab="facilitation">Facilitation Training</button>
+                <button class="tab-button" data-tab="leadership">Leadership Communication</button>
+            </div>
+
+            <div class="tab-content active" id="public-speaking">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div>
+                        <h3 class="service-title">Public Speaking & Leadership Development</h3>
+                        <p class="service-description">Transform from a nervous speaker to a confident communicator who captivates audiences and inspires action.</p>
+                    </div>
+                </div>
+
+                <div class="service-features">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-pen-fancy"></i> Speech Writing & Structure</h4>
+                        <p>Learn to craft compelling narratives with clear structure, persuasive arguments, and memorable takeaways.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-microphone"></i> Delivery Techniques</h4>
+                        <p>Master voice modulation, body language, pacing, and stage presence to engage your audience effectively.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-users"></i> Audience Engagement</h4>
+                        <p>Develop techniques to connect with diverse audiences, handle Q&A sessions, and manage stage fright.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-chart-line"></i> Persuasion & Influence</h4>
+                        <p>Learn psychological principles of persuasion to make your messages more impactful and memorable.</p>
+                    </div>
+                </div>
+
+                <div class="service-cta">
+                    <p>Ready to become a confident public speaker?</p>
+                    <a href="contact.html" class="cta-button">Get Started Today</a>
+                </div>
+            </div>
+
+            <div class="tab-content" id="business-pitching">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div>
+                        <h3 class="service-title">Business Pitching & Proposal Training</h3>
+                        <p class="service-description">Equip yourself with the skills to create winning pitches and proposals that secure funding and partnerships.</p>
+                    </div>
+                </div>
+
+                <div class="service-features">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-lightbulb"></i> Investor Pitch Development</h4>
+                        <p>Craft compelling investor pitches that clearly communicate your value proposition and growth potential.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-file-alt"></i> Proposal Writing</h4>
+                        <p>Learn to create persuasive proposals for grants, investors, and corporate collaborations.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-comments-dollar"></i> Negotiation Skills</h4>
+                        <p>Master negotiation techniques to secure better deals and build stronger business relationships.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-briefcase"></i> Startup Communication</h4>
+                        <p>Develop strategic communication skills tailored for entrepreneurs and startup founders.</p>
+                    </div>
+                </div>
+
+                <div class="service-cta">
+                    <p>Ready to pitch with confidence?</p>
+                    <a href="contact.html" class="cta-button">Schedule a Consultation</a>
+                </div>
+            </div>
+
+            <div class="tab-content" id="facilitation">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <h3 class="service-title">Facilitation Training</h3>
+                        <p class="service-description">Learn to lead productive discussions, workshops, and meetings that drive results and foster collaboration.</p>
+                    </div>
+                </div>
+
+                <div class="service-features">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-chalkboard-teacher"></i> Workshop Design</h4>
+                        <p>Design and deliver engaging workshops that achieve learning objectives and participant satisfaction.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-comments"></i> Group Dynamics</h4>
+                        <p>Understand and manage group dynamics to ensure productive discussions and inclusive participation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-tasks"></i> Meeting Management</h4>
+                        <p>Learn techniques to run efficient meetings with clear outcomes and participant engagement.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-puzzle-piece"></i> Conflict Resolution</h4>
+                        <p>Develop skills to navigate disagreements and transform conflict into productive dialogue.</p>
+                    </div>
+                </div>
+
+                <div class="service-cta">
+                    <p>Ready to become an effective facilitator?</p>
+                    <a href="contact.html" class="cta-button">Enroll in Our Program</a>
+                </div>
+            </div>
+
+            <div class="tab-content" id="leadership">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-chess-queen"></i>
+                    </div>
+                    <div>
+                        <h3 class="service-title">Leadership Communication</h3>
+                        <p class="service-description">Develop the communication skills needed to inspire teams, drive change, and lead with impact.</p>
+                    </div>
+                </div>
+
+                <div class="service-features">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-brain"></i> Strategic Messaging</h4>
+                        <p>Craft and deliver messages that align teams with organizational vision and strategic goals.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-heart"></i> Inspirational Leadership</h4>
+                        <p>Learn communication techniques that motivate teams and foster commitment to shared goals.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-balance-scale"></i> Difficult Conversations</h4>
+                        <p>Master the art of delivering challenging feedback and navigating sensitive topics with empathy.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-network-wired"></i> Cross-Cultural Communication</h4>
+                        <p>Develop skills to communicate effectively across diverse cultures and perspectives.</p>
+                    </div>
+                </div>
+
+                <div class="service-cta">
+                    <p>Ready to enhance your leadership communication?</p>
+                    <a href="contact.html" class="cta-button">Start Your Journey</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="training-formats">
+        <h2 class="section-title fade-in">Training Formats</h2>
+        <p class="section-subtitle fade-in">Flexible learning options to suit your needs</p>
+
+        <div class="formats-grid">
+            <div class="format-card fade-in">
+                <div class="format-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Group Workshops</h3>
+                <p>Interactive sessions with small groups for collaborative learning and peer feedback.</p>
+                <ul class="format-features">
+                    <li>Small group sizes (max 12 participants)</li>
+                    <li>Interactive exercises and role-playing</li>
+                    <li>Peer feedback and collaboration</li>
+                    <li>Networking opportunities</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Join a Workshop</a>
+            </div>
+            <div class="format-card fade-in">
+                <div class="format-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>One-on-One Coaching</h3>
+                <p>Personalized sessions tailored to your specific goals and challenges.</p>
+                <ul class="format-features">
+                    <li>Customized curriculum</li>
+                    <li>Flexible scheduling</li>
+                    <li>Targeted skill development</li>
+                    <li>Confidential feedback</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Book a Session</a>
+            </div>
+            <div class="format-card fade-in">
+                <div class="format-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Corporate Training</h3>
+                <p>Custom programs designed for organizations to enhance team communication.</p>
+                <ul class="format-features">
+                    <li>Tailored to organizational needs</li>
+                    <li>On-site or virtual delivery</li>
+                    <li>Team-building focus</li>
+                    <li>Measurable outcomes</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Inquire Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta">
+        <h2 class="section-title fade-in">Ready to Transform Your Communication Skills?</h2>
+        <p class="section-subtitle fade-in">Join our programs and become a confident, articulate communicator</p>
+        <div class="cta-buttons">
+            <a href="contact.html" class="cta-button">Get Started Today</a>
+            <a href="about.html" class="cta-button outline">Learn More About Us</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>SpeechCraft Academy</h3>
+                <p>Empowering voices, inspiring leaders, shaping change through effective communication training and social impact initiatives.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 39 Cnr Arras & Elizabeth street, Witbank, 1035</p>
+                <p><i class="fas fa-phone"></i> 071 123 0001</p>
+                <p><i class="fas fa-envelope"></i> amanda@speechcraftacademy.co.za</p>
+                <p><i class="fas fa-envelope"></i> admin@speechcraftacademy.co.za</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Our Services</a>
+                <a href="impact.html">Social Impact</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023-2025 SpeechCraft Academy. All rights reserved. Empowering voices, inspiring leaders, shaping change.</p>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for category links
+        document.querySelectorAll('.category-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetTab = document.querySelector(`[data-tab="${targetId.substring(1)}"]`);
+                
+                if (targetTab) {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to target button
+                    targetTab.classList.add('active');
+                    
+                    // Show corresponding content
+                    document.getElementById(targetId.substring(1)).classList.add('active');
+                    
+                    // Scroll to service details section
+                    document.getElementById('service-details').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

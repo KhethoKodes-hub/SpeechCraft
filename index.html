@@ -13,73 +13,93 @@
         }
 
         :root {
-            --beige-light: #f5f1e8;
-            --beige-medium: #e8dcc4;
-            --beige-dark: #c9b896;
-            --beige-darker: #a68f6f;
-            --accent: #8b7355;
-            --text-dark: #3d3429;
-            --text-light: #6b5d4f;
+            --primary: #d97706;
+            --primary-dark: #b45309;
+            --secondary: #f59e0b;
+            --accent: #fbbf24;
+            --purple: #7c3aed;
+            --purple-light: #a78bfa;
+            --dark: #1e293b;
+            --gray: #475569;
+            --light: #fef3c7;
+            --white: #ffffff;
+            --gradient-warm: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
         }
 
         body {
-            font-family: 'Georgia', serif;
-            color: var(--text-dark);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            background: var(--white);
         }
 
         /* Navigation */
         nav {
             position: fixed;
             width: 100%;
-            background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige-medium) 100%);
-            padding: 1.2rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.1);
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            padding: 0.8rem 5%;
-            background: linear-gradient(135deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+            padding: 0.8rem 8%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--text-dark);
-            font-family: 'Palatino', serif;
-            letter-spacing: 1px;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.5px;
         }
 
         .nav-links {
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
-            color: var(--text-dark);
+            color: var(--dark);
             text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
             position: relative;
-            padding: 0.5rem 0;
+            transition: color 0.3s ease;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: var(--accent);
+            background: var(--primary);
             transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
         .nav-links a:hover::after {
@@ -96,56 +116,87 @@
         .menu-toggle span {
             width: 25px;
             height: 3px;
-            background: var(--text-dark);
+            background: var(--primary);
             transition: all 0.3s ease;
+            border-radius: 2px;
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige-medium) 50%, var(--beige-dark) 100%);
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 0 5%;
+            padding: 8rem 8% 4rem;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        .sound-waves {
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(233, 220, 196, 0.4) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -250px;
-            right: -250px;
-            animation: float 6s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.1;
         }
 
-        .hero::after {
-            content: '';
+        .wave {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(201, 184, 150, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -200px;
-            left: -200px;
-            animation: float 8s ease-in-out infinite reverse;
+            width: 200%;
+            height: 100px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 40px,
+                var(--primary) 40px,
+                var(--primary) 42px
+            );
+            animation: wave-animation 20s linear infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-30px) translateX(20px); }
+        .wave:nth-child(1) { top: 20%; animation-delay: 0s; }
+        .wave:nth-child(2) { top: 40%; animation-delay: 2s; }
+        .wave:nth-child(3) { top: 60%; animation-delay: 4s; }
+        .wave:nth-child(4) { top: 80%; animation-delay: 6s; }
+
+        @keyframes wave-animation {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .hero-microphone {
+            position: absolute;
+            font-size: 25rem;
+            opacity: 0.03;
+            right: -5%;
+            top: 50%;
+            transform: translateY(-50%) rotate(-15deg);
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 1000px;
+            text-align: center;
+            position: relative;
             z-index: 1;
-            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.7rem 1.8rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
         }
 
         @keyframes fadeInUp {
@@ -160,410 +211,684 @@
         }
 
         .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            font-family: 'Palatino', serif;
-            letter-spacing: 2px;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            font-size: 5.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            letter-spacing: -2px;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero h1 .highlight {
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero .tagline {
-            font-size: 1.8rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
             font-style: italic;
-            animation: fadeInUp 1s ease-out 0.4s both;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
         }
 
-        .hero p {
+        .hero-description {
             font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2.5rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
             line-height: 1.8;
-            animation: fadeInUp 1s ease-out 0.6s both;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.8s backwards;
         }
 
         .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--beige-darker) 0%, var(--accent) 100%);
-            color: white;
+            padding: 1.2rem 2.8rem;
             text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            animation: fadeInUp 1s ease-out 0.8s both;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            letter-spacing: 0.5px;
         }
 
-        .cta-button:hover {
+        .cta-primary {
+            background: var(--gradient-warm);
+            color: white;
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
+        }
+
+        .cta-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
+        }
+
+        .cta-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .cta-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 5rem 8%;
+            background: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Sections */
         section {
-            padding: 6rem 5%;
+            padding: 8rem 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
         }
 
         .section-title {
             font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            font-family: 'Palatino', serif;
-            text-align: center;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
         }
 
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            text-align: center;
-            margin-bottom: 4rem;
-            font-style: italic;
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
         }
 
         /* About Section */
         #about {
-            background: linear-gradient(180deg, var(--beige-light) 0%, var(--beige-medium) 100%);
+            background: linear-gradient(180deg, white 0%, #fef3c7 100%);
         }
 
         .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .about-card {
             background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--accent);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-warm);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .about-card:hover::before {
+            transform: scaleX(1);
         }
 
         .about-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.15);
+        }
+
+        .about-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-warm);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: white;
         }
 
         .about-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--dark);
             margin-bottom: 1rem;
-            color: var(--accent);
         }
 
         .about-card p {
-            color: var(--text-light);
+            color: var(--gray);
             line-height: 1.8;
+            font-size: 0.95rem;
         }
 
         /* Services Section */
         #services {
-            background: linear-gradient(180deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+            background: white;
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2.5rem;
-            margin-top: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .service-card {
-            background: white;
-            padding: 2.5rem;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 3rem;
             border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            border: 2px solid transparent;
         }
 
-        .service-card::before {
+        .service-card::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--beige-darker) 0%, var(--accent) 100%);
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transition: all 0.6s ease;
+        }
+
+        .service-card:hover::after {
+            top: -60%;
+            right: -60%;
         }
 
         .service-card:hover {
             transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.2);
+            border-color: var(--primary);
+        }
+
+        .service-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(217, 119, 6, 0.2);
+            line-height: 1;
+            margin-bottom: 1rem;
         }
 
         .service-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--dark);
             margin-bottom: 1.5rem;
-            color: var(--text-dark);
+            position: relative;
+            z-index: 1;
         }
 
         .service-card ul {
             list-style: none;
-            color: var(--text-light);
+            position: relative;
+            z-index: 1;
         }
 
         .service-card li {
             padding: 0.8rem 0;
-            padding-left: 1.5rem;
+            padding-left: 2rem;
             position: relative;
-            line-height: 1.6;
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         .service-card li::before {
             content: '→';
             position: absolute;
             left: 0;
-            color: var(--accent);
+            color: var(--primary);
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
         /* Objectives Section */
         #objectives {
-            background: linear-gradient(180deg, var(--beige-dark) 0%, var(--beige-medium) 100%);
+            background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #objectives::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
+        }
+
+        #objectives .section-header {
+            position: relative;
+            z-index: 1;
+        }
+
+        #objectives .section-tag {
+            color: var(--accent);
+        }
+
+        #objectives .section-title,
+        #objectives .section-description {
+            color: white;
         }
 
         .objectives-list {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .objective-item {
-            background: white;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-            transition: all 0.3s ease;
+            gap: 2rem;
+            transition: all 0.4s ease;
         }
 
         .objective-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateX(15px);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: var(--accent);
         }
 
         .objective-number {
-            font-size: 2.5rem;
-            font-weight: bold;
+            font-size: 3rem;
+            font-weight: 900;
             color: var(--accent);
-            min-width: 60px;
+            min-width: 80px;
+            text-align: center;
         }
 
         .objective-text {
-            color: var(--text-light);
-            line-height: 1.7;
-            font-size: 1.1rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            opacity: 0.95;
         }
 
         /* Impact Section */
         #impact {
-            background: linear-gradient(180deg, var(--beige-medium) 0%, var(--beige-light) 100%);
+            background: linear-gradient(180deg, #fef3c7 0%, white 100%);
         }
 
         .impact-content {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .impact-intro {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 3rem;
             text-align: center;
             font-weight: 600;
+            line-height: 1.8;
         }
 
         .impact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
         }
 
         .impact-item {
+            background: white;
             text-align: center;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige-medium) 100%);
-            border-radius: 15px;
-            transition: all 0.3s ease;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
         }
 
         .impact-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.15);
         }
 
         .impact-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         .impact-item p {
-            color: var(--text-light);
-            line-height: 1.6;
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 1rem;
+            font-weight: 500;
         }
 
         /* Ambitions Section */
         #ambitions {
-            background: linear-gradient(180deg, var(--beige-light) 0%, var(--beige-dark) 100%);
+            background: white;
         }
 
         .ambitions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .ambition-card {
-            background: white;
-            padding: 2.5rem;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 3rem;
             border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             text-align: center;
             transition: all 0.4s ease;
             position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
         }
 
-        .ambition-card::after {
+        .ambition-card::before {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 100%;
+            right: 0;
             height: 5px;
-            background: linear-gradient(90deg, var(--accent) 0%, var(--beige-darker) 100%);
-            border-radius: 0 0 20px 20px;
+            background: var(--gradient-warm);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .ambition-card:hover::before {
+            transform: scaleX(1);
         }
 
         .ambition-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.2);
+            border-color: var(--primary);
         }
 
         .ambition-number {
-            font-size: 4rem;
-            font-weight: bold;
-            color: var(--accent);
+            font-size: 5rem;
+            font-weight: 900;
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             opacity: 0.3;
             margin-bottom: 1rem;
+            line-height: 1;
         }
 
         .ambition-card h3 {
             font-size: 1.5rem;
+            font-weight: 800;
             margin-bottom: 1rem;
-            color: var(--text-dark);
+            color: var(--dark);
         }
 
         .ambition-card p {
-            color: var(--text-light);
-            line-height: 1.7;
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
         }
 
         /* Contact Section */
         #contact {
-            background: linear-gradient(180deg, var(--beige-dark) 0%, var(--beige-darker) 100%);
+            background: linear-gradient(135deg, var(--dark) 0%, #334155 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact::before {
+            content: '🎤';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #contact .section-header {
+            position: relative;
+            z-index: 1;
+        }
+
+        #contact .section-tag {
+            color: var(--accent);
         }
 
         #contact .section-title,
-        #contact .section-subtitle {
+        #contact .section-description {
             color: white;
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 2.5rem;
+            padding: 3rem;
             border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
         }
 
         .contact-card:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent);
+            transform: translateY(-8px);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-warm);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
         }
 
         .contact-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
+            font-weight: 800;
             margin-bottom: 1.5rem;
             color: white;
         }
 
-        .contact-card p, .contact-card a {
-            color: rgba(255,255,255,0.9);
+        .contact-card p,
+        .contact-card a {
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
-            line-height: 1.8;
+            line-height: 1.9;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.7rem;
+            font-size: 0.95rem;
         }
 
         .contact-card a:hover {
-            color: white;
-            text-decoration: underline;
+            color: var(--accent);
         }
 
         .team-member {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 1.8rem;
+            padding-bottom: 1.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .team-member:last-child {
             border-bottom: none;
+            margin-bottom: 0;
         }
 
         .team-member h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
         }
 
         .team-member p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             opacity: 0.8;
         }
 
         /* Footer */
         footer {
-            background: var(--text-dark);
+            background: #0f172a;
             color: white;
+            padding: 3rem 8%;
             text-align: center;
-            padding: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
         }
 
         /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .services-grid,
+            .ambitions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+
             .nav-links {
                 position: fixed;
                 left: -100%;
                 top: 80px;
                 flex-direction: column;
-                background: linear-gradient(135deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+                background: white;
                 width: 100%;
                 text-align: center;
                 transition: 0.3s;
                 box-shadow: 0 10px 27px rgba(0,0,0,0.1);
                 padding: 2rem 0;
+                gap: 1.5rem;
             }
 
             .nav-links.active {
@@ -586,25 +911,34 @@
                 transform: rotate(-45deg) translate(7px, -6px);
             }
 
+            .hero {
+                padding: 5rem 5% 3rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
 
             .hero .tagline {
-                font-size: 1.2rem;
+                font-size: 1.4rem;
             }
 
-            .hero p {
-                font-size: 1rem;
+            section {
+                padding: 5rem 5%;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .cta-buttons {
+                flex-direction: column;
             }
 
-            .services-grid,
-            .ambitions-grid {
-                grid-template-columns: 1fr;
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .objective-item {
+                flex-direction: column;
+                text-align: center;
             }
         }
 
@@ -623,12 +957,14 @@
 </head>
 <body>
     <nav id="navbar">
-        <div class="logo"><a><img src="assets/speechcraftLogo.png" height="80" width="80"></a></div>
+        <div class="logo-container">
+            <img src="assets/speechcraftLogo.png" height="60" width="60" alt="SpeechCraft Academy Logo">
+            <span class="logo-text">SpeechCraft</span>
+        </div>
         <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="services.html">Services</a></li>
-            <!--<li><a href="#impact">Impact</a></li>-->
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="menu-toggle" id="menuToggle">
@@ -639,190 +975,262 @@
     </nav>
 
     <section class="hero" id="home">
+        <div class="sound-waves">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <div class="hero-microphone">🎤</div>
         <div class="hero-content">
-            <h1>SpeechCraft Academy</h1>
+            <div class="hero-badge">
+                <span>🎓</span>
+                <span>Social Enterprise Since 2023</span>
+            </div>
+            <h1><span class="highlight">Empower</span> Your Voice</h1>
             <p class="tagline">Enhance. Encourage. Promote.</p>
-            <p>Empowering voices, inspiring leaders, shaping change. Transform into a confident, articulate, and impactful communicator with our distinguished social enterprise dedicated to excellence in communication.</p>
-            <a href="#services" class="cta-button">Explore Our Programs</a>
+            <p class="hero-description">Transform into a confident, articulate, and impactful communicator with SpeechCraft Academy. We're a community-focused social enterprise dedicated to excellence in communication, leadership development, and youth empowerment.</p>
+            <div class="cta-buttons">
+                <a href="#services" class="cta-button cta-primary">
+                    <span>Explore Programs</span>
+                    <span>→</span>
+                </a>
+                <a href="#impact" class="cta-button cta-secondary">
+                    <span>Our Impact</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">2023</div>
+                <div class="stat-label">Established</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">Schools Reached</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Community Focused</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Programs Offered</div>
+            </div>
         </div>
     </section>
 
     <section id="about">
-        <h2 class="section-title fade-in">Who We Are</h2>
-        <p class="section-subtitle fade-in">A social enterprise with purpose since 2023</p>
+        <div class="section-header fade-in">
+            <div class="section-tag">Who We Are</div>
+            <h2 class="section-title">Building Tomorrow's Leaders</h2>
+            <p class="section-description">A social enterprise committed to transforming communities through the power of effective communication.</p>
+        </div>
         <div class="about-grid">
             <div class="about-card fade-in">
+                <div class="about-icon">📖</div>
                 <h3>Our Story</h3>
-                <p>Founded in 2023, SpeechCraft Academy is a distinguished social enterprise dedicated to transforming individuals into confident, articulate, and impactful communicators. We deliver high-quality public speaking, leadership, facilitation, and entrepreneurial communication training.</p>
+                <p>Since 2023, SpeechCraft Academy has been transforming individuals into confident, articulate, and impactful communicators. We deliver premium public speaking, leadership, facilitation, and entrepreneurial communication training that empowers communities.</p>
             </div>
             <div class="about-card fade-in">
-                <h3>Vision</h3>
-                <p>To empower individuals to become a generation that is articulate, informed, and confident, capable of influencing positive change through powerful communication.</p>
+                <div class="about-icon">🎯</div>
+                <h3>Our Vision</h3>
+                <p>To empower individuals to become a generation that is articulate, informed, and confident—capable of influencing positive change through powerful, authentic communication that resonates across communities.</p>
             </div>
             <div class="about-card fade-in">
-                <h3>Mission</h3>
-                <p>We aim to boost speakers' self-confidence, nurture critical thinking, and foster research and preparation skills that enable individuals to lead compelling conversations.</p>
+                <div class="about-icon">🚀</div>
+                <h3>Our Mission</h3>
+                <p>We boost speakers' self-confidence, nurture critical thinking, and foster research and preparation skills that enable individuals to lead compelling conversations and drive meaningful social impact.</p>
             </div>
         </div>
     </section>
 
     <section id="services">
-        <h2 class="section-title fade-in">Our Services</h2>
-        <p class="section-subtitle fade-in">Comprehensive programs designed for your success</p>
+        <div class="section-header fade-in">
+            <div class="section-tag">What We Offer</div>
+            <h2 class="section-title">Comprehensive Programs</h2>
+            <p class="section-description">Expert-led training designed to unlock your communication potential and leadership capabilities.</p>
+        </div>
         <div class="services-grid">
             <div class="service-card fade-in">
+                <div class="service-number">01</div>
                 <h3>Public Speaking & Leadership</h3>
                 <ul>
-                    <li>Comprehensive courses covering speech writing, delivery techniques, and audience engagement</li>
-                    <li>Programs tailored for student leaders at universities and FET colleges</li>
-                    <li>Focused workshops for both beginners and seasoned speakers</li>
-                    <li>Personalized one-on-one coaching with targeted feedback</li>
+                    <li>Comprehensive speech writing and delivery mastery</li>
+                    <li>Advanced audience engagement techniques</li>
+                    <li>Tailored programs for student leaders at universities and FET colleges</li>
+                    <li>Workshops for beginners and experienced speakers</li>
+                    <li>Personalized one-on-one coaching with expert feedback</li>
                 </ul>
             </div>
             <div class="service-card fade-in">
+                <div class="service-number">02</div>
                 <h3>Business Pitching & Proposals</h3>
                 <ul>
                     <li>Investor pitching workshops for entrepreneurs seeking funding</li>
-                    <li>Proposal writing programs for grants and corporate collaborations</li>
+                    <li>Grant proposal writing and submission strategies</li>
+                    <li>Corporate collaboration proposal development</li>
                     <li>Start-up communication coaching for strategic presentations</li>
-                    <li>Negotiation and persuasive communication skills</li>
+                    <li>Negotiation and persuasive communication mastery</li>
                 </ul>
             </div>
             <div class="service-card fade-in">
-                <h3>Facilitation Training</h3>
+                <div class="service-number">03</div>
+                <h3>Facilitation Excellence</h3>
                 <ul>
-                    <li>Effective facilitation mastery for youth development centers</li>
-                    <li>Dynamic discussion-leading skills for educators and professionals</li>
+                    <li>Professional facilitation training for youth development centers</li>
+                    <li>Dynamic discussion-leading skills for educators</li>
                     <li>Managing diverse viewpoints and fostering collaboration</li>
-                    <li>Interactive workshop methodologies</li>
+                    <li>Interactive workshop design and delivery</li>
+                    <li>Conflict resolution and consensus-building techniques</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="objectives">
-        <h2 class="section-title fade-in">Our Objectives</h2>
-        <p class="section-subtitle fade-in">Driving meaningful change through communication</p>
+        <div class="section-header fade-in">
+            <div class="section-tag">Our Purpose</div>
+            <h2 class="section-title">Core Objectives</h2>
+            <p class="section-description">Driving transformational change through strategic communication development.</p>
+        </div>
         <div class="objectives-list">
             <div class="objective-item fade-in">
                 <div class="objective-number">01</div>
-                <div class="objective-text">Ignite the voices of young people to advocate and lead societal conversations.</div>
+                <div class="objective-text">Ignite the voices of young people to advocate for change and lead critical societal conversations that shape our collective future.</div>
             </div>
             <div class="objective-item fade-in">
                 <div class="objective-number">02</div>
-                <div class="objective-text">Enhance communication skills through platforms that foster expression, articulation, and influence.</div>
+                <div class="objective-text">Enhance communication skills through dynamic platforms that foster authentic expression, clear articulation, and meaningful influence.</div>
             </div>
             <div class="objective-item fade-in">
                 <div class="objective-number">03</div>
-                <div class="objective-text">Foster critical thinking, research, and evidence-based speaking skills.</div>
+                <div class="objective-text">Foster critical thinking, rigorous research, and evidence-based speaking skills that elevate discourse and decision-making.</div>
             </div>
             <div class="objective-item fade-in">
                 <div class="objective-number">04</div>
-                <div class="objective-text">Promote creativity, authenticity, cultural awareness, and leadership development.</div>
+                <div class="objective-text">Promote creativity, authenticity, cultural awareness, and transformative leadership development across all communities.</div>
             </div>
         </div>
     </section>
 
     <section id="impact">
-        <h2 class="section-title fade-in">Our Social Impact</h2>
-        <p class="section-subtitle fade-in">Investing in the future through the SpeechCraft Academy Foundation</p>
-        <div class="impact-content fade-in">
-            <p class="impact-intro">Through the SpeechCraft Academy Foundation (NPC), we channel a portion of our profits into public school programs:</p>
+        <div class="section-header fade-in">
+            <div class="section-tag">Community Impact</div>
+            <h2 class="section-title">The SpeechCraft Foundation</h2>
+            <p class="section-description">Investing in tomorrow's leaders through accessible education and community programs.</p>
+        </div>
+        <div class="impact-content">
+            <p class="impact-intro fade-in">Through the SpeechCraft Academy Foundation (NPC), we channel a significant portion of our profits into empowering public school programs that create lasting community impact:</p>
             <div class="impact-grid">
-                <div class="impact-item">
-                    <div class="impact-icon">📚</div>
-                    <p>Establishing and supporting book reading clubs</p>
+                <div class="impact-item fade-in">
+                    <span class="impact-icon">📚</span>
+                    <p>Establishing and supporting book reading clubs that foster literacy and critical thinking</p>
                 </div>
-                <div class="impact-item">
-                    <div class="impact-icon">🎤</div>
-                    <p>Hosting debates and public speaking competitions</p>
+                <div class="impact-item fade-in">
+                    <span class="impact-icon">🎤</span>
+                    <p>Hosting competitive debates and public speaking competitions that build confidence</p>
                 </div>
-                <div class="impact-item">
-                    <div class="impact-icon">✍️</div>
-                    <p>Creating platforms for poetry and creative expression</p>
+                <div class="impact-item fade-in">
+                    <span class="impact-icon">✍️</span>
+                    <p>Creating platforms for poetry, creative expression, and artistic communication</p>
                 </div>
-                <div class="impact-item">
-                    <div class="impact-icon">💡</div>
-                    <p>Enhancing communication skills in under-resourced communities</p>
+                <div class="impact-item fade-in">
+                    <span class="impact-icon">💡</span>
+                    <p>Enhancing communication skills in under-resourced communities through free workshops</p>
                 </div>
-                <div class="impact-item">
-                    <div class="impact-icon">🚀</div>
-                    <p>Entrepreneurship and digital skills training for youth</p>
+                <div class="impact-item fade-in">
+                    <span class="impact-icon">🚀</span>
+                    <p>Entrepreneurship and digital skills training programs for youth development</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="ambitions">
-        <h2 class="section-title fade-in">Key Ambitions</h2>
-        <p class="section-subtitle fade-in">Our roadmap to excellence in 2025 and beyond</p>
+        <div class="section-header fade-in">
+            <div class="section-tag">Looking Forward</div>
+            <h2 class="section-title">2025 Strategic Goals</h2>
+            <p class="section-description">Our ambitious roadmap to expand impact and reach more communities.</p>
+        </div>
         <div class="ambitions-grid">
             <div class="ambition-card fade-in">
                 <div class="ambition-number">01</div>
-                <h3>Expand Corporate Partnerships</h3>
-                <p>Secure 5 new corporate clients by the end of 2025 for tailored training programs in public speaking, leadership, and pitching skills.</p>
+                <h3>Corporate Partnerships</h3>
+                <p>Secure 5 new corporate clients for tailored training programs in public speaking, leadership development, and professional pitching skills by end of 2025.</p>
             </div>
             <div class="ambition-card fade-in">
                 <div class="ambition-number">02</div>
-                <h3>Grow Revenue Streams</h3>
-                <p>Increase profitability through premium courses, workshops, and one-on-one coaching services.</p>
+                <h3>Revenue Growth</h3>
+                <p>Increase sustainable revenue streams through premium courses, specialized workshops, executive coaching, and corporate training programs.</p>
             </div>
             <div class="ambition-card fade-in">
                 <div class="ambition-number">03</div>
-                <h3>Enhance Brand Visibility</h3>
-                <p>Position SpeechCraft Academy as a go-to social enterprise for communication and leadership development, nationally recognized for youth and entrepreneurial programs.</p>
+                <h3>Brand Recognition</h3>
+                <p>Position SpeechCraft Academy as South Africa's leading social enterprise for communication and leadership development, recognized nationally for youth empowerment.</p>
             </div>
             <div class="ambition-card fade-in">
                 <div class="ambition-number">04</div>
-                <h3>Increase Youth Impact</h3>
-                <p>Expand foundation programs to reach at least 30 schools annually with book reading clubs, debate initiatives, and public speaking programs.</p>
+                <h3>Community Reach</h3>
+                <p>Expand foundation programs to reach at least 30 schools annually with book clubs, debate initiatives, and public speaking development programs.</p>
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <h2 class="section-title fade-in">Get In Touch</h2>
-        <p class="section-subtitle fade-in">Let's start your communication journey together</p>
+        <div class="section-header fade-in">
+            <div class="section-tag">Connect With Us</div>
+            <h2 class="section-title">Start Your Journey</h2>
+            <p class="section-description">Ready to transform your communication skills? Let's connect and explore how we can help you achieve your goals.</p>
+        </div>
         <div class="contact-grid">
             <div class="contact-card fade-in">
-                <h3>Contact Information</h3>
-                <p><strong>Email:</strong></p>
-                <a href="mailto:amanda@speechcraftacademy.co.za">amanda@speechcraftacademy.co.za</a>
+                <div class="contact-icon">📧</div>
+                <h3>Get In Touch</h3>
+                <p><strong>General Inquiries:</strong></p>
                 <a href="mailto:admin@speechcraftacademy.co.za">admin@speechcraftacademy.co.za</a>
-                <p style="margin-top: 1rem;"><strong>Phone:</strong></p>
+                <p style="margin-top: 1rem;"><strong>CEO & Facilitator:</strong></p>
+                <a href="mailto:amanda@speechcraftacademy.co.za">amanda@speechcraftacademy.co.za</a>
+                <p style="margin-top: 1rem;"><strong>Call Us:</strong></p>
                 <a href="tel:0711230001">071 123 0001</a>
-                <p style="margin-top: 1rem;"><strong>Social Media:</strong></p>
-                <p>@speechcraftacademy</p>
             </div>
             <div class="contact-card fade-in">
-                <h3>Our Location</h3>
-                <p><strong>Address:</strong></p>
-                <p>39 Cnr Arras & Elizabeth Street<br>Witbank<br>1035</p>
+                <div class="contact-icon">📍</div>
+                <h3>Visit Our Office</h3>
+                <p><strong>Physical Address:</strong></p>
+                <p>39 Cnr Arras & Elizabeth Street<br>Witbank, Mpumalanga<br>1035, South Africa</p>
+                <p style="margin-top: 1.5rem;"><strong>Connect Online:</strong></p>
+                <a href="#">@speechcraftacademy</a>
             </div>
             <div class="contact-card fade-in">
-                <h3>Our Team</h3>
+                <div class="contact-icon">👥</div>
+                <h3>Our Leadership Team</h3>
                 <div class="team-member">
                     <h4>Amanda Nkuna</h4>
-                    <p>CEO & Facilitator</p>
+                    <p>CEO & Lead Facilitator</p>
                 </div>
                 <div class="team-member">
                     <h4>Lebogang Mokoena</h4>
-                    <p>Administrator</p>
+                    <p>Operations Administrator</p>
                 </div>
                 <div class="team-member">
                     <h4>Lesedi Matong</h4>
-                    <p>Facilitator</p>
+                    <p>Senior Facilitator</p>
                 </div>
                 <div class="team-member">
                     <h4>Siphokazi Ndlovu</h4>
-                    <p>Marketing and Social Media Manager</p>
+                    <p>Marketing & Social Media Manager</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2023-2025 SpeechCraft Academy. All rights reserved. Empowering voices, inspiring leaders, shaping change.</p>
+        <p>&copy; 2023-2025 SpeechCraft Academy. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.9;">Empowering voices • Inspiring leaders • Shaping change</p>
     </footer>
 
     <script>
@@ -883,28 +1291,6 @@
 
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
-        });
-
-        // Active navigation link highlighting
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-links a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navItems.forEach(item => {
-                item.style.fontWeight = 'normal';
-                if (item.getAttribute('href') === `#${current}`) {
-                    item.style.fontWeight = 'bold';
-                }
-            });
         });
     </script>
 </body>

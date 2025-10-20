@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - SpeechCraft Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="icon" href="assets/speechcraftLogo.png" type="image/png">
-
+    <link rel="icon" href="assets/speechcraftLogo.png" type="image/png">
     <style>
         * {
             margin: 0;
@@ -15,83 +14,113 @@
         }
 
         :root {
-            --beige-light: #f5f1e8;
-            --beige-medium: #e8dcc4;
-            --beige-dark: #c9b896;
-            --beige-darker: #a68f6f;
-            --accent: #8b7355;
-            --accent-light: #a68f6f;
-            --text-dark: #3d3429;
-            --text-light: #6b5d4f;
+            --primary: #d97706;
+            --primary-dark: #b45309;
+            --secondary: #f59e0b;
+            --accent: #fbbf24;
+            --purple: #7c3aed;
+            --purple-light: #a78bfa;
+            --dark: #1e293b;
+            --gray: #475569;
+            --light: #fef3c7;
+            --white: #ffffff;
+            --gradient-warm: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         body {
-            font-family: 'Georgia', serif;
-            color: var(--text-dark);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--gradient-warm);
+            width: 0%;
+            transition: width 0.3s ease;
         }
 
         /* Navigation */
         nav {
             position: fixed;
             width: 100%;
-            background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige-medium) 100%);
-            padding: 1.2rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.1);
             transition: var(--transition);
         }
 
         nav.scrolled {
-            padding: 0.8rem 5%;
-            background: linear-gradient(135deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+            padding: 0.8rem 8%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--text-dark);
-            font-family: 'Palatino', serif;
-            letter-spacing: 1px;
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 1rem;
         }
 
-        .logo-icon {
-            color: var(--accent);
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.5px;
         }
 
         .nav-links {
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
-            color: var(--text-dark);
+            color: var(--dark);
             text-decoration: none;
-            font-size: 1rem;
-            transition: var(--transition);
-            position: relative;
-            padding: 0.5rem 0;
             font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: var(--accent);
+            background: var(--primary);
             transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
         }
 
         .nav-links a:hover::after,
@@ -109,57 +138,95 @@
         .menu-toggle span {
             width: 25px;
             height: 3px;
-            background: var(--text-dark);
+            background: var(--primary);
             transition: var(--transition);
+            border-radius: 2px;
         }
 
-        /* Page Header */
-        .page-header {
-            height: 50vh;
-            background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige-medium) 50%, var(--beige-dark) 100%);
+        /* Hero Section */
+        .page-hero {
+            min-height: 60vh;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 5%;
+            padding: 10rem 8% 6rem;
             position: relative;
             overflow: hidden;
             margin-top: 80px;
         }
 
-        .page-header::before {
-            content: '';
+        .sound-waves {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(233, 220, 196, 0.4) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -200px;
-            right: -200px;
-            animation: float 8s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.1;
         }
 
-        .page-header::after {
-            content: '';
+        .wave {
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(201, 184, 150, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -150px;
-            left: -150px;
-            animation: float 10s ease-in-out infinite reverse;
+            width: 200%;
+            height: 100px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 40px,
+                var(--primary) 40px,
+                var(--primary) 42px
+            );
+            animation: wave-animation 20s linear infinite;
+        }
+
+        .wave:nth-child(1) { top: 20%; animation-delay: 0s; }
+        .wave:nth-child(2) { top: 40%; animation-delay: 2s; }
+        .wave:nth-child(3) { top: 60%; animation-delay: 4s; }
+        .wave:nth-child(4) { top: 80%; animation-delay: 6s; }
+
+        @keyframes wave-animation {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .hero-microphone {
+            position: absolute;
+            font-size: 25rem;
+            opacity: 0.03;
+            right: -5%;
+            top: 50%;
+            transform: translateY(-50%) rotate(-15deg);
+            animation: float 6s ease-in-out infinite;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-20px) translateX(10px); }
+            0%, 100% { transform: translateY(-50%) rotate(-15deg) translateY(0); }
+            50% { transform: translateY(-50%) rotate(-15deg) translateY(-20px); }
         }
 
-        .page-header-content {
+        .page-hero-content {
             max-width: 900px;
+            position: relative;
             z-index: 1;
-            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.7rem 1.8rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
+            backdrop-filter: blur(10px);
         }
 
         @keyframes fadeInUp {
@@ -173,77 +240,103 @@
             }
         }
 
-        .page-header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            font-family: 'Palatino', serif;
-            letter-spacing: 2px;
+        .page-hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            letter-spacing: -2px;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
         }
 
-        .page-header p {
-            font-size: 1.4rem;
-            color: var(--accent);
-            font-style: italic;
+        .page-hero h1 .highlight {
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-hero p {
+            font-size: 1.5rem;
+            color: var(--gray);
             margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
         }
 
-        /* Sections */
-        section {
-            padding: 6rem 5%;
+        /* Main Content */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 8%;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
         }
 
         .section-title {
             font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            font-family: 'Palatino', serif;
-            text-align: center;
-            position: relative;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            text-align: center;
-            margin-bottom: 4rem;
-            font-style: italic;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
         }
 
         /* Contact Options */
-        #contact-options {
-            background: linear-gradient(180deg, var(--beige-light) 0%, var(--beige-medium) 100%);
+        .contact-options {
+            margin-bottom: 8rem;
         }
 
         .contact-options-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2.5rem;
-            margin-top: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .contact-option {
             background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             transition: var(--transition);
             text-align: center;
+            border: 2px solid transparent;
             position: relative;
             overflow: hidden;
         }
@@ -255,140 +348,211 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, var(--beige-darker) 0%, var(--accent) 100%);
+            background: var(--gradient-warm);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .contact-option:hover::before {
+            transform: scaleX(1);
         }
 
         .contact-option:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.15);
+            border-color: var(--accent);
         }
 
         .option-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-warm);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 auto 2rem;
             transition: var(--transition);
         }
 
         .contact-option:hover .option-icon {
-            transform: scale(1.2);
+            transform: scale(1.1) rotate(5deg);
         }
 
         .contact-option h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
-            color: var(--accent);
+            color: var(--dark);
+            font-weight: 800;
         }
 
         .contact-option p {
-            color: var(--text-light);
+            color: var(--gray);
             line-height: 1.8;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
         }
 
         .contact-details {
             text-align: left;
-            margin-top: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .contact-detail {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1rem;
-            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .contact-detail:hover {
+            background: rgba(217, 119, 6, 0.1);
+            transform: translateX(5px);
         }
 
         .contact-detail i {
-            color: var(--accent);
+            color: var(--primary);
             margin-right: 1rem;
-            margin-top: 0.2rem;
+            margin-top: 0.3rem;
             min-width: 20px;
+            font-size: 1.1rem;
+        }
+
+        .contact-detail strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: var(--dark);
         }
 
         .contact-link {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: var(--beige-light);
-            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-warm);
+            color: white;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
+            border-radius: 12px;
+            font-weight: 700;
             transition: var(--transition);
-            margin-top: 1rem;
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
         }
 
         .contact-link:hover {
-            background: var(--accent);
-            color: white;
             transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
         }
 
-        /* Contact Form */
-        #contact-form-section {
-            background: linear-gradient(180deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+        /* Contact Form Section */
+        .contact-form-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 8rem 8%;
+            border-radius: 32px;
+            margin-bottom: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form-section::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            right: -200px;
         }
 
         .contact-form-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
+            align-items: start;
+            position: relative;
+            z-index: 1;
         }
 
         .form-intro {
             background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            height: fit-content;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 120px;
+            transition: var(--transition);
+        }
+
+        .form-intro:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
         }
 
         .form-intro h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
-            color: var(--accent);
+            color: var(--dark);
+            font-weight: 800;
         }
 
         .form-intro p {
-            color: var(--text-light);
-            line-height: 1.8;
+            color: var(--gray);
+            line-height: 1.9;
             margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-intro-details {
+            margin-top: 2rem;
         }
 
         .contact-form {
             background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+
+        .contact-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
+            margin-bottom: 0.7rem;
+            color: var(--dark);
             font-weight: 600;
+            font-size: 0.95rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--beige-medium);
-            border-radius: 8px;
-            font-family: 'Georgia', serif;
+            padding: 1rem 1.2rem;
+            border: 2px solid var(--light);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
             transition: var(--transition);
-            background: var(--beige-light);
+            background: var(--white);
         }
 
         .form-control:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.1);
         }
 
         textarea.form-control {
@@ -396,50 +560,81 @@
             resize: vertical;
         }
 
+        select.form-control {
+            cursor: pointer;
+        }
+
         .submit-btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--accent);
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--gradient-warm);
             color: white;
             border: none;
-            border-radius: 50px;
+            border-radius: 12px;
             font-size: 1.1rem;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            width: 100%;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
         }
 
         .submit-btn:hover {
-            background: var(--beige-darker);
             transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
+        }
+
+        .form-success {
+            display: none;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: fadeInUp 0.6s ease;
         }
 
         /* FAQ Section */
-        #faq {
-            background: linear-gradient(180deg, var(--beige-dark) 0%, var(--beige-medium) 100%);
+        .faq-section {
+            margin-bottom: 8rem;
         }
 
         .faq-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .faq-item {
             background: white;
             margin-bottom: 1.5rem;
-            border-radius: 10px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent);
+        }
+
+        .faq-item.active {
+            border-color: var(--primary);
         }
 
         .faq-question {
-            padding: 1.5rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-dark);
+            padding: 1.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -448,25 +643,26 @@
         }
 
         .faq-question:hover {
-            background: var(--beige-light);
+            background: var(--light);
         }
 
         .faq-question i {
-            color: var(--accent);
-            transition: var(--transition);
+            color: var(--primary);
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
         }
 
         .faq-answer {
-            padding: 0 1.5rem;
+            padding: 0 2rem;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
-            color: var(--text-light);
-            line-height: 1.7;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            color: var(--gray);
+            line-height: 1.9;
         }
 
         .faq-item.active .faq-answer {
-            padding: 0 1.5rem 1.5rem;
+            padding: 0 2rem 2rem;
             max-height: 500px;
         }
 
@@ -474,130 +670,186 @@
             transform: rotate(180deg);
         }
 
-        /* Team Contact */
-        #team-contact {
-            background: linear-gradient(180deg, var(--beige-medium) 0%, var(--beige-light) 100%);
+        /* Team Section */
+        .team-section {
+            margin-bottom: 8rem;
         }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
-            margin-top: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .team-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             transition: var(--transition);
-            text-align: center;
-            position: relative;
+            border: 2px solid transparent;
         }
 
         .team-card:hover {
             transform: translateY(-12px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.15);
+            border-color: var(--accent);
         }
 
         .team-img {
-            height: 200px;
-            background: linear-gradient(135deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+            height: 220px;
+            background: var(--gradient-warm);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            color: var(--accent);
+            font-size: 5rem;
+            color: white;
+            font-weight: 900;
             position: relative;
             overflow: hidden;
         }
 
-        .team-img::after {
+        .team-img::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--beige-darker) 0%, var(--accent) 100%);
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
         }
 
         .team-info {
-            padding: 2rem;
+            padding: 2.5rem;
         }
 
         .team-info h3 {
             font-size: 1.6rem;
             margin-bottom: 0.5rem;
-            color: var(--text-dark);
+            color: var(--dark);
+            font-weight: 800;
         }
 
         .team-info .role {
-            color: var(--accent);
-            font-weight: bold;
+            color: var(--primary);
+            font-weight: 700;
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+        }
+
+        .team-info p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
         }
 
         .team-contact {
-            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
         }
 
         .team-contact a {
-            display: block;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--gray);
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            padding: 0.7rem 1rem;
+            background: var(--light);
+            border-radius: 8px;
+            transition: var(--transition);
         }
 
         .team-contact a:hover {
-            color: var(--accent);
+            background: var(--primary);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .team-contact a i {
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .team-contact a:hover i {
+            color: white;
         }
 
         /* CTA Section */
-        #cta {
-            background: linear-gradient(135deg, var(--beige-darker) 0%, var(--accent) 100%);
-            color: white;
+        .cta-section {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
+            padding: 8rem 8%;
+            border-radius: 32px;
             text-align: center;
-            padding: 5rem 5%;
-        }
-
-        #cta .section-title,
-        #cta .section-subtitle {
             color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        #cta .section-title::after {
-            background: white;
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            opacity: 0.95;
         }
 
         .cta-buttons {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            margin-top: 2rem;
             flex-wrap: wrap;
         }
 
         .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: white;
-            color: var(--accent);
+            padding: 1.2rem 2.8rem;
             text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
             transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
         }
 
-        .cta-button:hover {
+        .cta-button.primary {
+            background: white;
+            color: var(--purple);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button.primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-            background: var(--beige-light);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         .cta-button.outline {
@@ -608,86 +860,8 @@
 
         .cta-button.outline:hover {
             background: white;
-            color: var(--accent);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--beige-medium);
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--accent);
-        }
-
-        .footer-column p, .footer-column a {
-            color: rgba(255,255,255,0.7);
-            line-height: 1.8;
-            margin-bottom: 0.8rem;
-            display: block;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-column a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--accent);
+            color: var(--purple);
             transform: translateY(-3px);
-        }
-
-        .copyright {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
-            margin-top: 2rem;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.9rem;
         }
 
         /* Back to Top Button */
@@ -695,20 +869,21 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            color: white;
+            width: 55px;
+            height: 55px;
+            background: var(--gradient-warm);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: var(--transition);
             opacity: 0;
             visibility: hidden;
+            transition: var(--transition);
             z-index: 999;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
         }
 
         .back-to-top.visible {
@@ -717,23 +892,124 @@
         }
 
         .back-to-top:hover {
-            background: var(--beige-darker);
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 8% 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 2;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive */
+        @media (max-width: 968px) {
+            .contact-form-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-intro {
+                position: static;
+            }
+
+            .page-hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+
             .nav-links {
                 position: fixed;
                 left: -100%;
                 top: 80px;
                 flex-direction: column;
-                background: linear-gradient(135deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+                background: white;
                 width: 100%;
                 text-align: center;
                 transition: 0.3s;
                 box-shadow: 0 10px 27px rgba(0,0,0,0.1);
                 padding: 2rem 0;
+                gap: 1.5rem;
             }
 
             .nav-links.active {
@@ -756,82 +1032,67 @@
                 transform: rotate(-45deg) translate(7px, -6px);
             }
 
-            .page-header {
-                height: 40vh;
+            .page-hero {
+                padding: 8rem 5% 4rem;
+                min-height: 50vh;
             }
 
-            .page-header h1 {
+            .page-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .page-header p {
+            .page-hero p {
                 font-size: 1.2rem;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .content-wrapper {
+                padding: 5rem 5%;
             }
 
-            .contact-options-grid,
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-form-container {
-                grid-template-columns: 1fr;
+            .contact-form-section,
+            .cta-section {
+                padding: 5rem 5%;
             }
 
             .cta-buttons {
                 flex-direction: column;
-                align-items: center;
             }
 
             .cta-button {
                 width: 100%;
-                max-width: 300px;
-                text-align: center;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-column h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .social-links {
                 justify-content: center;
             }
-        }
 
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
     <nav id="navbar">
-        <div class="logo">
-            <i ></i>
-        <div class="logo"><a><img src="assets/speechcraftLogo.png" height="80" width="80"></a></div>
+        <div class="logo-container">
+            <img src="assets/speechcraftLogo.png" height="60" width="60" alt="SpeechCraft Academy Logo">
+            <span class="logo-text">SpeechCraft</span>
         </div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="services.html">Services</a></li>
-            <li><a href="impact.html">Impact</a></li>
-            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="#" class="active">Contact</a></li>
         </ul>
         <div class="menu-toggle" id="menuToggle">
             <span></span>
@@ -840,308 +1101,378 @@
         </div>
     </nav>
 
-    <section class="page-header">
-        <div class="page-header-content">
-            <h1>Contact Us</h1>
-            <p>Let's start your communication journey together</p>
+    <div class="page-hero">
+        <div class="sound-waves">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
         </div>
-    </section>
-
-    <section id="contact-options">
-        <h2 class="section-title fade-in">Get In Touch</h2>
-        <p class="section-subtitle fade-in">Multiple ways to connect with our team</p>
-
-        <div class="contact-options-grid">
-            <div class="contact-option fade-in">
-                <div class="option-icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <h3>Email Us</h3>
-                <p>Send us a detailed message and we'll respond within 24 hours.</p>
-                <div class="contact-details">
-                    <div class="contact-detail">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>General Inquiries</strong><br>
-                            admin@speechcraftacademy.co.za
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>CEO & Program Director</strong><br>
-                            amanda@speechcraftacademy.co.za
-                        </div>
-                    </div>
-                </div>
-                <a href="mailto:admin@speechcraftacademy.co.za" class="contact-link">Send an Email</a>
+        <div class="hero-microphone">🎤</div>
+        <div class="page-hero-content">
+            <div class="hero-badge">
+                <span>📞</span>
+                <span>Get in Touch Today</span>
             </div>
-            <div class="contact-option fade-in">
-                <div class="option-icon">
-                    <i class="fas fa-phone"></i>
+            <h1>Let's <span class="highlight">Connect</span></h1>
+            <p>Ready to transform your communication skills? Reach out to our team and let's start your journey to confident, impactful communication.</p>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <!-- Contact Options -->
+        <section class="contact-options fade-in">
+            <div class="section-header">
+                <div class="section-tag">Contact Options</div>
+                <h2 class="section-title">Choose How to Reach Us</h2>
+                <p class="section-description">We offer multiple ways to connect with our team. Choose the method that works best for you.</p>
+            </div>
+            <div class="contact-options-grid">
+                <div class="contact-option">
+                    <div class="option-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>Send us a detailed message and we'll get back to you within 24 hours.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>General Inquiries</strong>
+                                <a href="mailto:admin@speechcraftacademy.co.za">admin@speechcraftacademy.co.za</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-user-tie"></i>
+                            <div>
+                                <strong>CEO & Facilitator</strong>
+                                <a href="mailto:amanda@speechcraftacademy.co.za">amanda@speechcraftacademy.co.za</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="mailto:admin@speechcraftacademy.co.za" class="contact-link">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Email
+                    </a>
                 </div>
-                <h3>Call Us</h3>
-                <p>Speak directly with our team during business hours.</p>
-                <div class="contact-details">
-                    <div class="contact-detail">
+
+                <div class="contact-option">
+                    <div class="option-icon">
                         <i class="fas fa-phone"></i>
-                        <div>
-                            <strong>Main Office</strong><br>
-                            071 123 0001
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>Speak directly with our team during business hours for immediate assistance.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Main Office</strong>
+                                <a href="tel:0711230001">071 123 0001</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Business Hours</strong>
+                                <span>Mon-Fri: 8:00 AM - 5:00 PM</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-detail">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <strong>Business Hours</strong><br>
-                            Mon-Fri: 8:00 AM - 5:00 PM<br>
-                            Sat: 9:00 AM - 1:00 PM
-                        </div>
-                    </div>
+                    <a href="tel:0711230001" class="contact-link">
+                        <i class="fas fa-phone"></i>
+                        Call Now
+                    </a>
                 </div>
-                <a href="tel:0711230001" class="contact-link">Call Now</a>
-            </div>
-            <div class="contact-option fade-in">
-                <div class="option-icon">
-                    <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <h3>Visit Us</h3>
-                <p>Schedule an in-person consultation at our office.</p>
-                <div class="contact-details">
-                    <div class="contact-detail">
+
+                <div class="contact-option">
+                    <div class="option-icon">
                         <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Address</strong><br>
-                            39 Cnr Arras & Elizabeth Street<br>
-                            Witbank, 1035<br>
-                            South Africa
+                    </div>
+                    <h3>Visit Us</h3>
+                    <p>Schedule an in-person consultation at our office in Witbank, Mpumalanga.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Physical Address</strong>
+                                <span>39 Cnr Arras & Elizabeth Street<br>Witbank, Mpumalanga<br>1035, South Africa</span>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
+                                <strong>Appointments</strong>
+                                <span>Book in advance for personalized consultations</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-detail">
-                        <i class="fas fa-car"></i>
-                        <div>
-                            <strong>Parking</strong><br>
-                            Free parking available on premises
+                    <a href="#contact-form" class="contact-link">
+                        <i class="fas fa-calendar-check"></i>
+                        Schedule Visit
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="contact-form-section fade-in">
+            <div class="contact-form-container">
+                <div class="form-intro">
+                    <h3>Let's Start Your Journey</h3>
+                    <p>Fill out the form below and our team will get back to you within 24 hours to discuss how we can help transform your communication skills.</p>
+                    <p>Whether you're interested in public speaking training, business pitching workshops, or our youth development programs, we're here to help you find the perfect solution.</p>
+                    <div class="form-intro-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-lightbulb"></i>
+                            <div>
+                                <strong>Quick Response</strong>
+                                <span>We reply within 24 hours</span>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-user-check"></i>
+                            <div>
+                                <strong>Expert Consultation</strong>
+                                <span>Personalized recommendations</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <a href="#visit" class="contact-link">Get Directions</a>
+
+                <form class="contact-form" id="contact-form">
+                    <h3 style="margin-bottom: 2rem; color: var(--dark);">Send Us a Message</h3>
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Service Interest</label>
+                        <select id="service" name="service" class="form-control">
+                            <option value="">Select a service</option>
+                            <option value="public-speaking">Public Speaking & Leadership</option>
+                            <option value="business-pitching">Business Pitching & Proposals</option>
+                            <option value="facilitation">Facilitation Excellence</option>
+                            <option value="youth-development">Youth Development Programs</option>
+                            <option value="corporate-training">Corporate Training</option>
+                            <option value="one-on-one">One-on-One Coaching</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message *</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+
+                    <div class="form-success" id="formSuccess">
+                        <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>Thank You!</h3>
+                        <p>Your message has been sent successfully. We'll get back to you within 24 hours.</p>
+                    </div>
+                </form>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact-form-section">
-        <h2 class="section-title fade-in">Send Us a Message</h2>
-        <p class="section-subtitle fade-in">We'd love to hear from you</p>
+        <!-- FAQ Section -->
+        <section class="faq-section fade-in">
+            <div class="section-header">
+                <div class="section-tag">FAQ</div>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-description">Find quick answers to common questions about our programs and services.</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How quickly will I hear back after submitting the contact form?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We respond to all inquiries within 24 hours during business days. For urgent matters, we recommend calling our office directly at 071 123 0001.</p>
+                    </div>
+                </div>
 
-        <div class="contact-form-container">
-            <div class="form-intro fade-in">
-                <h3>How Can We Help You?</h3>
-                <p>Whether you're interested in our training programs, have questions about our services, or want to discuss a custom solution for your organization, we're here to help.</p>
-                <p>Please provide as much detail as possible so we can best assist you with your communication needs.</p>
-                <div class="contact-details" style="margin-top: 2rem;">
-                    <div class="contact-detail">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <strong>Response Time</strong><br>
-                            We typically respond within 24 hours
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer customized training programs for organizations?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We specialize in creating tailored communication training programs for businesses, educational institutions, and organizations. Our corporate training can be customized to address your specific needs and objectives.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is the cost of your training programs?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our pricing varies depending on the program, duration, and customization required. Public speaking workshops start from R1,500 per session, while corporate training is quoted based on specific requirements. Contact us for a detailed quote.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer online/virtual training options?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We offer both in-person and virtual training options to accommodate different preferences and locations. Our virtual sessions are interactive and designed to deliver the same impactful results as our in-person programs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I book a consultation or assessment session?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can book a consultation by filling out our contact form, calling our office, or emailing us directly. We'll schedule a convenient time to discuss your goals and recommend the best approach for your communication development.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section fade-in">
+            <div class="section-header">
+                <div class="section-tag">Our Team</div>
+                <h2 class="section-title">Meet Our Leadership</h2>
+                <p class="section-description">Connect directly with our dedicated team members who are passionate about transforming communication skills.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img">👩‍💼</div>
+                    <div class="team-info">
+                        <h3>Amanda Nkuna</h3>
+                        <p class="role">CEO & Lead Facilitator</p>
+                        <p>Leading SpeechCraft Academy with vision and passion for communication excellence and youth empowerment.</p>
+                        <div class="team-contact">
+                            <a href="mailto:amanda@speechcraftacademy.co.za">
+                                <i class="fas fa-envelope"></i>
+                                amanda@speechcraftacademy.co.za
+                            </a>
+                            <a href="tel:0711230001">
+                                <i class="fas fa-phone"></i>
+                                071 123 0001
+                            </a>
                         </div>
                     </div>
-                    <div class="contact-detail">
-                        <i class="fas fa-user-check"></i>
-                        <div>
-                            <strong>Consultation</strong><br>
-                            Free initial consultation available
+                </div>
+
+                <div class="team-card">
+                    <div class="team-img">👨‍💼</div>
+                    <div class="team-info">
+                        <h3>Lebogang Mokoena</h3>
+                        <p class="role">Operations Administrator</p>
+                        <p>Ensuring seamless operations and exceptional service delivery for all our programs and participants.</p>
+                        <div class="team-contact">
+                            <a href="mailto:admin@speechcraftacademy.co.za">
+                                <i class="fas fa-envelope"></i>
+                                admin@speechcraftacademy.co.za
+                            </a>
+                            <a href="tel:0711230001">
+                                <i class="fas fa-phone"></i>
+                                071 123 0001
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-img">👨‍🏫</div>
+                    <div class="team-info">
+                        <h3>Lesedi Matong</h3>
+                        <p class="role">Senior Facilitator</p>
+                        <p>Bringing expertise and enthusiasm to every training session, helping participants discover their voice.</p>
+                        <div class="team-contact">
+                            <a href="mailto:training@speechcraftacademy.co.za">
+                                <i class="fas fa-envelope"></i>
+                                training@speechcraftacademy.co.za
+                            </a>
+                            <a href="tel:0711230001">
+                                <i class="fas fa-phone"></i>
+                                071 123 0001
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <form class="contact-form fade-in" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="service">Service Interest</label>
-                    <select id="service" class="form-control">
-                        <option value="">Select a service</option>
-                        <option value="public-speaking">Public Speaking</option>
-                        <option value="business-pitching">Business Pitching</option>
-                        <option value="facilitation">Facilitation Training</option>
-                        <option value="leadership">Leadership Communication</option>
-                        <option value="corporate">Corporate Training</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Your Message *</label>
-                    <textarea id="message" class="form-control" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </section>
+        </section>
 
-    <section id="faq">
-        <h2 class="section-title fade-in">Frequently Asked Questions</h2>
-        <p class="section-subtitle fade-in">Quick answers to common questions</p>
-
-        <div class="faq-container">
-            <div class="faq-item fade-in">
-                <div class="faq-question">
-                    How soon can I start a training program?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Most of our programs have rolling admissions, and you can typically start within 1-2 weeks of registration. For corporate training programs, we usually schedule sessions 3-4 weeks in advance to allow for proper customization.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <div class="faq-question">
-                    Do you offer virtual training options?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes, we offer both in-person and virtual training options. Our virtual sessions are interactive and designed to provide the same level of engagement and personal feedback as our in-person programs.</p>
+        <!-- CTA Section -->
+        <section class="cta-section fade-in">
+            <div class="cta-content">
+                <h2>Start Your Communication Journey Today</h2>
+                <p>Don't wait to transform your communication skills. Join hundreds of successful individuals and organizations who have enhanced their abilities with SpeechCraft Academy.</p>
+                <div class="cta-buttons">
+                    <a href="#contact-form" class="cta-button primary">
+                        <i class="fas fa-calendar-check"></i>
+                        Book a Consultation
+                    </a>
+                    <a href="tel:0711230001" class="cta-button outline">
+                        <i class="fas fa-phone"></i>
+                        Call Us Now
+                    </a>
                 </div>
             </div>
-            <div class="faq-item fade-in">
-                <div class="faq-question">
-                    What is your cancellation policy?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>We understand that schedules can change. For individual sessions, we require 24 hours notice for cancellations. For workshop registrations, you can cancel up to 7 days in advance for a full refund. Corporate training cancellations are handled on a case-by-case basis as outlined in our service agreements.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <div class="faq-question">
-                    Do you offer customized programs for organizations?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Absolutely! We specialize in creating customized communication training programs tailored to your organization's specific needs, culture, and objectives. Contact us to schedule a consultation where we can discuss your requirements in detail.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <div class="faq-question">
-                    What payment methods do you accept?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>We accept various payment methods including bank transfers, credit/debit cards, and for corporate clients, we can arrange invoicing with payment terms. All pricing is transparent with no hidden fees.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="team-contact">
-        <h2 class="section-title fade-in">Contact Our Team Directly</h2>
-        <p class="section-subtitle fade-in">Get in touch with the right person for your needs</p>
-
-        <div class="team-grid">
-            <div class="team-card fade-in">
-                <div class="team-img">AN</div>
-                <div class="team-info">
-                    <h3>Amanda Nkuna</h3>
-                    <p class="role">CEO & Facilitator</p>
-                    <p>Amanda oversees all programs and strategic direction. Contact her for executive coaching, program development, and partnership opportunities.</p>
-                    <div class="team-contact">
-                        <a href="mailto:amanda@speechcraftacademy.co.za"><i class="fas fa-envelope"></i> amanda@speechcraftacademy.co.za</a>
-                        <a href="tel:0711230001"><i class="fas fa-phone"></i> 071 123 0001</a>
-                    </div>
-                </div>
-            </div>
-            <div class="team-card fade-in">
-                <div class="team-img">LM</div>
-                <div class="team-info">
-                    <h3>Lebogang Mokoena</h3>
-                    <p class="role">Administrator</p>
-                    <p>Lebogang handles registrations, scheduling, and general inquiries. Contact her for program details, availability, and administrative questions.</p>
-                    <div class="team-contact">
-                        <a href="mailto:admin@speechcraftacademy.co.za"><i class="fas fa-envelope"></i> admin@speechcraftacademy.co.za</a>
-                        <a href="tel:0711230001"><i class="fas fa-phone"></i> 071 123 0001</a>
-                    </div>
-                </div>
-            </div>
-            <div class="team-card fade-in">
-                <div class="team-img">LM</div>
-                <div class="team-info">
-                    <h3>Lesedi Matong</h3>
-                    <p class="role">Facilitator</p>
-                    <p>Lesedi leads many of our youth development programs and workshops. Contact her for questions about specific training content and youth initiatives.</p>
-                    <div class="team-contact">
-                        <a href="mailto:lesedi@speechcraftacademy.co.za"><i class="fas fa-envelope"></i> lesedi@speechcraftacademy.co.za</a>
-                    </div>
-                </div>
-            </div>
-            <div class="team-card fade-in">
-                <div class="team-img">SN</div>
-                <div class="team-info">
-                    <h3>Siphokazi Ndlovu</h3>
-                    <p class="role">Marketing & Social Media Manager</p>
-                    <p>Siphokazi manages our communications and public relations. Contact her for media inquiries, collaborations, and event partnerships.</p>
-                    <div class="team-contact">
-                        <a href="mailto:marketing@speechcraftacademy.co.za"><i class="fas fa-envelope"></i> marketing@speechcraftacademy.co.za</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="cta">
-        <h2 class="section-title fade-in">Ready to Start Your Communication Journey?</h2>
-        <p class="section-subtitle fade-in">Take the first step toward confident, impactful communication</p>
-        <div class="cta-buttons">
-            <a href="services.html" class="cta-button">Explore Our Services</a>
-            <a href="tel:0711230001" class="cta-button outline">Call Us Now</a>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <footer>
         <div class="footer-content">
             <div class="footer-column">
                 <h3>SpeechCraft Academy</h3>
-                <p>Empowering voices, inspiring leaders, shaping change through effective communication training and social impact initiatives.</p>
+                <p>Empowering voices, inspiring leaders, and shaping change through transformative communication training since 2023.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
             <div class="footer-column">
                 <h3>Contact Info</h3>
-                <p><i class="fas fa-map-marker-alt"></i> 39 Cnr Arras & Elizabeth street, Witbank, 1035</p>
-                <p><i class="fas fa-phone"></i> 071 123 0001</p>
-                <p><i class="fas fa-envelope"></i> amanda@speechcraftacademy.co.za</p>
-                <p><i class="fas fa-envelope"></i> admin@speechcraftacademy.co.za</p>
+                <p><i class="fas fa-map-marker-alt"></i> 39 Cnr Arras & Elizabeth Street, Witbank, 1035</p>
+                <a href="tel:0711230001"><i class="fas fa-phone"></i> 071 123 0001</a>
+                <a href="mailto:admin@speechcraftacademy.co.za"><i class="fas fa-envelope"></i> admin@speechcraftacademy.co.za</a>
             </div>
             <div class="footer-column">
                 <h3>Quick Links</h3>
                 <a href="index.html">Home</a>
                 <a href="about.html">About Us</a>
                 <a href="services.html">Our Services</a>
-                <a href="impact.html">Social Impact</a>
-                <a href="contact.html">Contact Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h3>Our Programs</h3>
+                <a href="services.html">Public Speaking</a>
+                <a href="services.html">Business Pitching</a>
+                <a href="services.html">Youth Development</a>
+                <a href="services.html">Corporate Training</a>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2023-2025 SpeechCraft Academy. All rights reserved. Empowering voices, inspiring leaders, shaping change.</p>
+            <p>&copy; 2023-2025 SpeechCraft Academy. All rights reserved. | Enhance. Encourage. Promote.</p>
         </div>
     </footer>
-
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-chevron-up"></i>
-    </div>
 
     <script>
         // Mobile menu toggle
@@ -1171,6 +1502,47 @@
             }
         });
 
+        // Progress bar
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollPosition = window.scrollY;
+            const progress = (scrollPosition / documentHeight) * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
         // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
@@ -1189,30 +1561,10 @@
             observer.observe(el);
         });
 
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
         // FAQ Accordion
         const faqItems = document.querySelectorAll('.faq-item');
-        
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
-            
             question.addEventListener('click', () => {
                 // Close all other items
                 faqItems.forEach(otherItem => {
@@ -1220,42 +1572,41 @@
                         otherItem.classList.remove('active');
                     }
                 });
-                
                 // Toggle current item
                 item.classList.toggle('active');
             });
         });
 
         // Contact Form Submission
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', (e) => {
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('formSuccess');
+
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form values
+            // Simple form validation
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
             
-            // In a real application, you would send this data to a server
-            // For this example, we'll just show an alert
-            alert(`Thank you, ${name}! Your message has been sent. We will respond to ${email} within 24 hours.`);
-            
-            // Reset form
-            contactForm.reset();
+            if (name && email && message) {
+                // Show success message
+                formSuccess.classList.add('show');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formSuccess.classList.remove('show');
+                }, 5000);
+            }
         });
 
-        // Smooth scrolling for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Enhanced hover effects for cards
+        document.querySelectorAll('.contact-option, .team-card, .faq-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
             });
         });
     </script>

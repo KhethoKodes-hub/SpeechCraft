@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services - SpeechCraft Academy</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="icon" href="assets/speechcraftLogo.png" type="image/png">
-
+    <link rel="icon" href="assets/speechcraftLogo.png" type="image/png">
     <style>
         * {
             margin: 0;
@@ -15,83 +13,112 @@
         }
 
         :root {
-            --beige-light: #f5f1e8;
-            --beige-medium: #e8dcc4;
-            --beige-dark: #c9b896;
-            --beige-darker: #a68f6f;
-            --accent: #8b7355;
-            --accent-light: #a68f6f;
-            --text-dark: #3d3429;
-            --text-light: #6b5d4f;
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --primary: #d97706;
+            --primary-dark: #b45309;
+            --secondary: #f59e0b;
+            --accent: #fbbf24;
+            --purple: #7c3aed;
+            --purple-light: #a78bfa;
+            --dark: #1e293b;
+            --gray: #475569;
+            --light: #fef3c7;
+            --white: #ffffff;
+            --gradient-warm: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
         }
 
         body {
-            font-family: 'Georgia', serif;
-            color: var(--text-dark);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--gradient-warm);
+            width: 0%;
+            transition: width 0.3s ease;
         }
 
         /* Navigation */
         nav {
             position: fixed;
             width: 100%;
-            background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige-medium) 100%);
-            padding: 1.2rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            transition: var(--transition);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.1);
+            transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            padding: 0.8rem 5%;
-            background: linear-gradient(135deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+            padding: 0.8rem 8%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--text-dark);
-            font-family: 'Palatino', serif;
-            letter-spacing: 1px;
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 1rem;
         }
 
-        .logo-icon {
-            color: var(--accent);
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.5px;
         }
 
         .nav-links {
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
-            color: var(--text-dark);
+            color: var(--dark);
             text-decoration: none;
-            font-size: 1rem;
-            transition: var(--transition);
-            position: relative;
-            padding: 0.5rem 0;
             font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: var(--accent);
+            background: var(--primary);
             transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
         }
 
         .nav-links a:hover::after,
@@ -109,57 +136,88 @@
         .menu-toggle span {
             width: 25px;
             height: 3px;
-            background: var(--text-dark);
-            transition: var(--transition);
+            background: var(--primary);
+            transition: all 0.3s ease;
+            border-radius: 2px;
         }
 
-        /* Page Header */
-        .page-header {
-            height: 60vh;
-            background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige-medium) 50%, var(--beige-dark) 100%);
+        /* Hero Section */
+        .page-hero {
+            min-height: 70vh;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 5%;
+            padding: 10rem 8% 6rem;
             position: relative;
             overflow: hidden;
             margin-top: 80px;
         }
 
-        .page-header::before {
-            content: '';
+        .sound-waves {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(233, 220, 196, 0.4) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -200px;
-            right: -200px;
-            animation: float 8s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.1;
         }
 
-        .page-header::after {
-            content: '';
+        .wave {
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(201, 184, 150, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -150px;
-            left: -150px;
-            animation: float 10s ease-in-out infinite reverse;
+            width: 200%;
+            height: 100px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 40px,
+                var(--primary) 40px,
+                var(--primary) 42px
+            );
+            animation: wave-animation 20s linear infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-20px) translateX(10px); }
+        .wave:nth-child(1) { top: 20%; animation-delay: 0s; }
+        .wave:nth-child(2) { top: 40%; animation-delay: 2s; }
+        .wave:nth-child(3) { top: 60%; animation-delay: 4s; }
+        .wave:nth-child(4) { top: 80%; animation-delay: 6s; }
+
+        @keyframes wave-animation {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        .page-header-content {
+        .hero-microphone {
+            position: absolute;
+            font-size: 25rem;
+            opacity: 0.03;
+            right: -5%;
+            top: 50%;
+            transform: translateY(-50%) rotate(-15deg);
+        }
+
+        .page-hero-content {
             max-width: 900px;
+            position: relative;
             z-index: 1;
-            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.7rem 1.8rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
         }
 
         @keyframes fadeInUp {
@@ -173,550 +231,701 @@
             }
         }
 
-        .page-header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            font-family: 'Palatino', serif;
-            letter-spacing: 2px;
+        .page-hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            letter-spacing: -2px;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
         }
 
-        .page-header p {
-            font-size: 1.4rem;
-            color: var(--accent);
-            font-style: italic;
+        .page-hero h1 .highlight {
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-hero p {
+            font-size: 1.5rem;
+            color: var(--gray);
             margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
         }
 
-        /* Sections */
-        section {
-            padding: 6rem 5%;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            font-family: 'Palatino', serif;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
+        .scroll-indicator {
             position: absolute;
-            bottom: -10px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
+            animation: bounce 2s infinite;
+            color: var(--primary);
+            font-size: 2rem;
+            z-index: 2;
         }
 
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            text-align: center;
-            margin-bottom: 4rem;
-            font-style: italic;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 8%;
         }
 
         /* Services Overview */
-        #services-overview {
-            background: linear-gradient(180deg, var(--beige-light) 0%, var(--beige-medium) 100%);
-        }
-
-        .services-intro {
-            max-width: 1000px;
-            margin: 0 auto 3rem;
+        .services-overview {
             text-align: center;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-light);
+            margin-bottom: 6rem;
         }
 
-        .services-categories {
+        .services-overview h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .services-overview p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            line-height: 1.9;
+        }
+
+        .services-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .service-category {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: var(--transition);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--beige-darker) 0%, var(--accent) 100%);
-        }
-
-        .service-category:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .category-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-            transition: var(--transition);
-        }
-
-        .service-category:hover .category-icon {
-            transform: scale(1.2);
-        }
-
-        .service-category h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .service-category p {
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .category-link {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: var(--beige-light);
-            color: var(--accent);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .category-link:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* Service Details */
-        #service-details {
-            background: linear-gradient(180deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
-        }
-
-        .service-tabs {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .tab-buttons {
+        .stat-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.2);
+            border-color: var(--primary);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 8rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
             display: flex;
-            justify-content: center;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            gap: 1rem;
+            flex-direction: column;
         }
 
-        .tab-button {
-            padding: 1rem 2rem;
-            background: white;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Georgia', serif;
-            font-size: 1.1rem;
-            color: var(--text-light);
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .tab-button:hover {
-            background: var(--beige-light);
-            transform: translateY(-3px);
-        }
-
-        .tab-button.active {
-            background: var(--accent);
-            color: white;
-        }
-
-        .tab-content {
-            display: none;
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .tab-content.active {
-            display: block;
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.15);
+            border-color: var(--accent);
         }
 
         .service-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-            gap: 1.5rem;
+            background: var(--gradient-warm);
+            padding: 3rem 2.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: float-circle 6s ease-in-out infinite;
+        }
+
+        @keyframes float-circle {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20px, -20px) scale(1.1); }
         }
 
         .service-icon {
             font-size: 4rem;
-            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: block;
+            position: relative;
+            z-index: 1;
         }
 
-        .service-title {
-            font-size: 2.2rem;
-            color: var(--text-dark);
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            font-weight: 800;
         }
 
-        .service-description {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            line-height: 1.8;
+        .service-category {
+            font-size: 1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+        }
+
+        .service-content {
+            padding: 2.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 1;
         }
 
-        .feature-card {
-            background: var(--beige-light);
-            padding: 1.5rem;
-            border-radius: 10px;
-            transition: var(--transition);
+        .service-features li {
+            padding: 1rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            color: var(--gray);
+            border-bottom: 1px solid var(--light);
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .service-features li:last-child {
+            border-bottom: none;
         }
 
-        .feature-card h4 {
+        .service-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
             font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .feature-card h4 i {
-            color: var(--accent);
+        .service-pricing {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            text-align: center;
         }
 
-        .feature-card p {
-            color: var(--text-light);
-            line-height: 1.6;
+        .price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: 500;
         }
 
         .service-cta {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--beige-medium);
-        }
-
-        .service-cta p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-light);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--accent);
+            display: block;
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--gradient-warm);
             color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
             text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
         }
 
-        .cta-button:hover {
-            background: var(--beige-darker);
+        .service-cta:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
         }
 
         /* Training Formats */
-        #training-formats {
-            background: linear-gradient(180deg, var(--beige-dark) 0%, var(--beige-medium) 100%);
+        .formats-section {
+            margin-bottom: 8rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
         }
 
         .formats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .format-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .format-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.2);
+            border-color: var(--primary);
+        }
+
+        .format-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            transition: all 0.4s ease;
+        }
+
+        .format-card:hover .format-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .format-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 800;
+        }
+
+        .format-card p {
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            margin-bottom: 8rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
             background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.15);
+            border-color: var(--accent);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            font-size: 5rem;
+            color: var(--accent);
+            opacity: 0.15;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.9;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 55px;
+            height: 55px;
+            background: var(--gradient-warm);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
+            padding: 8rem 8%;
+            border-radius: 32px;
+            color: white;
+            margin-bottom: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
+        }
+
+        .process-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-section .section-header {
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-section .section-tag {
+            color: var(--accent);
+        }
+
+        .process-section .section-title,
+        .process-section .section-description {
+            color: white;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
             padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: var(--transition);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .process-step:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: block;
+            line-height: 1;
+        }
+
+        .process-step h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .process-step p {
+            line-height: 1.8;
+            opacity: 0.95;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 6rem 4rem;
+            border-radius: 32px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .format-card::before {
+        .cta-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--beige-darker) 0%, var(--accent) 100%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
         }
 
-        .format-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .format-icon {
+        .cta-section h2 {
             font-size: 3rem;
             margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-
-        .format-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .format-card p {
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .format-features {
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-
-        .format-features li {
-            padding: 0.5rem 0;
-            color: var(--text-light);
+            color: var(--dark);
+            font-weight: 900;
+            letter-spacing: -1px;
             position: relative;
-            padding-left: 1.5rem;
+            z-index: 1;
         }
 
-        .format-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* CTA Section */
-        #cta {
-            background: linear-gradient(135deg, var(--beige-darker) 0%, var(--accent) 100%);
-            color: white;
-            text-align: center;
-            padding: 5rem 5%;
-        }
-
-        #cta .section-title,
-        #cta .section-subtitle {
-            color: white;
-        }
-
-        #cta .section-title::after {
-            background: white;
+        .cta-section p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-buttons {
             display: flex;
-            justify-content: center;
             gap: 1.5rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: white;
-            color: var(--accent);
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            font-weight: 600;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-            background: var(--beige-light);
-        }
-
-        .cta-button.outline {
-            background: transparent;
-            border: 2px solid white;
-            color: white;
-        }
-
-        .cta-button.outline:hover {
-            background: white;
-            color: var(--accent);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--beige-medium);
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--accent);
-        }
-
-        .footer-column p, .footer-column a {
-            color: rgba(255,255,255,0.7);
-            line-height: 1.8;
-            margin-bottom: 0.8rem;
-            display: block;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-column a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            transition: var(--transition);
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
-        .social-links a:hover {
-            background: var(--accent);
+        .btn {
+            padding: 1.2rem 2.8rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-warm);
+            color: white;
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
+        }
+
+        .btn-primary:hover {
             transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
         }
 
-        .copyright {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
-            margin-top: 2rem;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.9rem;
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
         }
 
-        /* Back to Top Button */
-        .back-to-top {
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            color: white;
+            width: 55px;
+            height: 55px;
+            background: var(--gradient-warm);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: var(--transition);
             opacity: 0;
             visibility: hidden;
+            transition: all 0.3s ease;
             z-index: 999;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
         }
 
-        .back-to-top.visible {
+        .scroll-to-top.visible {
             opacity: 1;
             visibility: visible;
         }
 
-        .back-to-top:hover {
-            background: var(--beige-darker);
+        .scroll-to-top:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 8%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive */
+        @media (max-width: 968px) {
+            .services-grid,
+            .formats-grid,
+            .testimonials-grid,
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .page-hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+
             .nav-links {
                 position: fixed;
                 left: -100%;
                 top: 80px;
                 flex-direction: column;
-                background: linear-gradient(135deg, var(--beige-medium) 0%, var(--beige-dark) 100%);
+                background: white;
                 width: 100%;
                 text-align: center;
                 transition: 0.3s;
                 box-shadow: 0 10px 27px rgba(0,0,0,0.1);
                 padding: 2rem 0;
+                gap: 1.5rem;
             }
 
             .nav-links.active {
@@ -739,96 +948,64 @@
                 transform: rotate(-45deg) translate(7px, -6px);
             }
 
-            .page-header {
-                height: 50vh;
+            .page-hero {
+                padding: 8rem 5% 4rem;
+                min-height: 60vh;
             }
 
-            .page-header h1 {
+            .page-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .page-header p {
+            .page-hero p {
                 font-size: 1.2rem;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .content-wrapper {
+                padding: 5rem 5%;
             }
 
-            .services-categories,
-            .formats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tab-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .tab-button {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .service-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .service-features {
-                grid-template-columns: 1fr;
+            .process-section,
+            .cta-section {
+                padding: 5rem 5%;
             }
 
             .cta-buttons {
                 flex-direction: column;
-                align-items: center;
             }
 
-            .cta-button {
+            .btn {
                 width: 100%;
-                max-width: 300px;
-                text-align: center;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-column h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .social-links {
                 justify-content: center;
             }
-        }
 
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" id="scrollToTop">↑</div>
+
     <nav id="navbar">
-        <div class="logo">
-            <i class="fas fa-comments logo-icon"></i>
-            SpeechCraft Academy
+        <div class="logo-container">
+            <img src="assets/speechcraftLogo.png" height="60" width="60" alt="SpeechCraft Academy Logo">
+            <span class="logo-text">SpeechCraft</span>
         </div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="services.html" class="active">Services</a></li>
-            <li><a href="impact.html">Impact</a></li>
+            <li><a href="#" class="active">Services</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="menu-toggle" id="menuToggle">
@@ -838,302 +1015,311 @@
         </div>
     </nav>
 
-    <section class="page-header">
-        <div class="page-header-content">
-            <h1>Our Services</h1>
-            <p>Comprehensive Communication Training Programs</p>
+    <div class="page-hero">
+        <div class="sound-waves">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
         </div>
-    </section>
-
-    <section id="services-overview">
-        <h2 class="section-title fade-in">What We Offer</h2>
-        <p class="section-subtitle fade-in">Transform your communication skills with our specialized training programs</p>
-        
-        <div class="services-intro fade-in">
-            <p>At SpeechCraft Academy, we offer a comprehensive range of communication training programs designed to empower individuals and organizations. Our evidence-based approach combines practical skills with theoretical knowledge to deliver lasting results.</p>
+        <div class="hero-microphone">🎤</div>
+        <div class="page-hero-content">
+            <div class="hero-badge">
+                <span>💼</span>
+                <span>Our Programs</span>
+            </div>
+            <h1><span class="highlight">Transform</span> Your Voice</h1>
+            <p>Expert-led training programs designed to elevate your communication skills</p>
         </div>
+        <div class="scroll-indicator">↓</div>
+    </div>
 
-        <div class="services-categories">
-            <div class="service-category fade-in">
-                <div class="category-icon">
-                    <i class="fas fa-bullhorn"></i>
+    <div class="content-wrapper">
+        <!-- Services Overview -->
+        <section class="services-overview fade-in">
+            <h2>Comprehensive Communication Training</h2>
+            <p>At SpeechCraft Academy, we offer diverse programs designed to enhance your communication abilities, build confidence, and develop leadership skills. Our expert facilitators provide personalized training tailored to your specific needs and goals.</p>
+            
+            <div class="services-stats">
+                <div class="stat-box">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Programs Offered</div>
                 </div>
-                <h3>Public Speaking</h3>
-                <p>Master the art of confident public speaking, from speech writing to delivery techniques and audience engagement.</p>
-                <a href="#public-speaking" class="category-link">Learn More</a>
-            </div>
-            <div class="service-category fade-in">
-                <div class="category-icon">
-                    <i class="fas fa-handshake"></i>
+                <div class="stat-box">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Participants Trained</div>
                 </div>
-                <h3>Business Communication</h3>
-                <p>Develop winning pitches, proposals, and negotiation skills to advance your business or career.</p>
-                <a href="#business-pitching" class="category-link">Learn More</a>
-            </div>
-            <div class="service-category fade-in">
-                <div class="category-icon">
-                    <i class="fas fa-users"></i>
+                <div class="stat-box">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Schools Reached</div>
                 </div>
-                <h3>Facilitation Training</h3>
-                <p>Learn to lead dynamic discussions, manage diverse viewpoints, and foster collaboration.</p>
-                <a href="#facilitation" class="category-link">Learn More</a>
+                <div class="stat-box">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="service-details">
-        <h2 class="section-title fade-in">Service Details</h2>
-        <p class="section-subtitle fade-in">Explore our comprehensive training programs</p>
-
-        <div class="service-tabs">
-            <div class="tab-buttons">
-                <button class="tab-button active" data-tab="public-speaking">Public Speaking</button>
-                <button class="tab-button" data-tab="business-pitching">Business Pitching</button>
-                <button class="tab-button" data-tab="facilitation">Facilitation Training</button>
-                <button class="tab-button" data-tab="leadership">Leadership Communication</button>
-            </div>
-
-            <div class="tab-content active" id="public-speaking">
+        <!-- Services Grid -->
+        <section class="services-grid fade-in">
+            <div class="service-card">
                 <div class="service-header">
-                    <div class="service-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <div>
-                        <h3 class="service-title">Public Speaking & Leadership Development</h3>
-                        <p class="service-description">Transform from a nervous speaker to a confident communicator who captivates audiences and inspires action.</p>
-                    </div>
+                    <span class="service-icon">🎤</span>
+                    <h3>Public Speaking Mastery</h3>
+                    <p class="service-category">Leadership & Communication</p>
                 </div>
-
-                <div class="service-features">
-                    <div class="feature-card">
-                        <h4><i class="fas fa-pen-fancy"></i> Speech Writing & Structure</h4>
-                        <p>Learn to craft compelling narratives with clear structure, persuasive arguments, and memorable takeaways.</p>
+                <div class="service-content">
+                    <ul class="service-features">
+                        <li>Comprehensive speech writing and delivery techniques</li>
+                        <li>Advanced audience engagement strategies</li>
+                        <li>Overcoming stage fright and building confidence</li>
+                        <li>Voice modulation and body language mastery</li>
+                        <li>Personalized feedback and expert coaching</li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price">From R1,500</div>
+                        <div class="price-note">Per session • Group discounts available</div>
                     </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-microphone"></i> Delivery Techniques</h4>
-                        <p>Master voice modulation, body language, pacing, and stage presence to engage your audience effectively.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-users"></i> Audience Engagement</h4>
-                        <p>Develop techniques to connect with diverse audiences, handle Q&A sessions, and manage stage fright.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-chart-line"></i> Persuasion & Influence</h4>
-                        <p>Learn psychological principles of persuasion to make your messages more impactful and memorable.</p>
-                    </div>
-                </div>
-
-                <div class="service-cta">
-                    <p>Ready to become a confident public speaker?</p>
-                    <a href="contact.html" class="cta-button">Get Started Today</a>
+                    <a href="contact.html" class="service-cta">Enroll Now →</a>
                 </div>
             </div>
 
-            <div class="tab-content" id="business-pitching">
+            <div class="service-card">
                 <div class="service-header">
-                    <div class="service-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <div>
-                        <h3 class="service-title">Business Pitching & Proposal Training</h3>
-                        <p class="service-description">Equip yourself with the skills to create winning pitches and proposals that secure funding and partnerships.</p>
-                    </div>
+                    <span class="service-icon">💼</span>
+                    <h3>Business Pitching</h3>
+                    <p class="service-category">Entrepreneurship & Proposals</p>
                 </div>
-
-                <div class="service-features">
-                    <div class="feature-card">
-                        <h4><i class="fas fa-lightbulb"></i> Investor Pitch Development</h4>
-                        <p>Craft compelling investor pitches that clearly communicate your value proposition and growth potential.</p>
+                <div class="service-content">
+                    <ul class="service-features">
+                        <li>Investor pitching workshops for startups</li>
+                        <li>Grant proposal writing and submission strategies</li>
+                        <li>Corporate collaboration proposal development</li>
+                        <li>Negotiation and persuasive communication mastery</li>
+                        <li>Start-up communication strategy coaching</li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price">From R2,000</div>
+                        <div class="price-note">Per session • Corporate rates available</div>
                     </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-file-alt"></i> Proposal Writing</h4>
-                        <p>Learn to create persuasive proposals for grants, investors, and corporate collaborations.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-comments-dollar"></i> Negotiation Skills</h4>
-                        <p>Master negotiation techniques to secure better deals and build stronger business relationships.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-briefcase"></i> Startup Communication</h4>
-                        <p>Develop strategic communication skills tailored for entrepreneurs and startup founders.</p>
-                    </div>
-                </div>
-
-                <div class="service-cta">
-                    <p>Ready to pitch with confidence?</p>
-                    <a href="contact.html" class="cta-button">Schedule a Consultation</a>
+                    <a href="contact.html" class="service-cta">Get Started →</a>
                 </div>
             </div>
 
-            <div class="tab-content" id="facilitation">
+            <div class="service-card">
                 <div class="service-header">
-                    <div class="service-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div>
-                        <h3 class="service-title">Facilitation Training</h3>
-                        <p class="service-description">Learn to lead productive discussions, workshops, and meetings that drive results and foster collaboration.</p>
-                    </div>
+                    <span class="service-icon">👥</span>
+                    <h3>Facilitation Excellence</h3>
+                    <p class="service-category">Workshop Leadership</p>
                 </div>
-
-                <div class="service-features">
-                    <div class="feature-card">
-                        <h4><i class="fas fa-chalkboard-teacher"></i> Workshop Design</h4>
-                        <p>Design and deliver engaging workshops that achieve learning objectives and participant satisfaction.</p>
+                <div class="service-content">
+                    <ul class="service-features">
+                        <li>Professional facilitation training programs</li>
+                        <li>Dynamic discussion-leading skills development</li>
+                        <li>Managing diverse viewpoints effectively</li>
+                        <li>Interactive workshop design and delivery</li>
+                        <li>Conflict resolution and consensus-building</li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price">From R1,800</div>
+                        <div class="price-note">Per session • Bulk discounts available</div>
                     </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-comments"></i> Group Dynamics</h4>
-                        <p>Understand and manage group dynamics to ensure productive discussions and inclusive participation.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-tasks"></i> Meeting Management</h4>
-                        <p>Learn techniques to run efficient meetings with clear outcomes and participant engagement.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-puzzle-piece"></i> Conflict Resolution</h4>
-                        <p>Develop skills to navigate disagreements and transform conflict into productive dialogue.</p>
-                    </div>
-                </div>
-
-                <div class="service-cta">
-                    <p>Ready to become an effective facilitator?</p>
-                    <a href="contact.html" class="cta-button">Enroll in Our Program</a>
+                    <a href="contact.html" class="service-cta">Learn More →</a>
                 </div>
             </div>
 
-            <div class="tab-content" id="leadership">
+            <div class="service-card">
                 <div class="service-header">
-                    <div class="service-icon">
-                        <i class="fas fa-chess-queen"></i>
-                    </div>
-                    <div>
-                        <h3 class="service-title">Leadership Communication</h3>
-                        <p class="service-description">Develop the communication skills needed to inspire teams, drive change, and lead with impact.</p>
-                    </div>
+                    <span class="service-icon">🎓</span>
+                    <h3>Youth Development</h3>
+                    <p class="service-category">Student Programs</p>
                 </div>
-
-                <div class="service-features">
-                    <div class="feature-card">
-                        <h4><i class="fas fa-brain"></i> Strategic Messaging</h4>
-                        <p>Craft and deliver messages that align teams with organizational vision and strategic goals.</p>
+                <div class="service-content">
+                    <ul class="service-features">
+                        <li>University and college leadership programs</li>
+                        <li>Debate and public speaking competitions</li>
+                        <li>Student council communication training</li>
+                        <li>Youth empowerment workshops</li>
+                        <li>Career preparation communication skills</li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price">From R800</div>
+                        <div class="price-note">Per student • School package rates</div>
                     </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-heart"></i> Inspirational Leadership</h4>
-                        <p>Learn communication techniques that motivate teams and foster commitment to shared goals.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-balance-scale"></i> Difficult Conversations</h4>
-                        <p>Master the art of delivering challenging feedback and navigating sensitive topics with empathy.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-network-wired"></i> Cross-Cultural Communication</h4>
-                        <p>Develop skills to communicate effectively across diverse cultures and perspectives.</p>
-                    </div>
-                </div>
-
-                <div class="service-cta">
-                    <p>Ready to enhance your leadership communication?</p>
-                    <a href="contact.html" class="cta-button">Start Your Journey</a>
+                    <a href="contact.html" class="service-cta">Book Program →</a>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section id="training-formats">
-        <h2 class="section-title fade-in">Training Formats</h2>
-        <p class="section-subtitle fade-in">Flexible learning options to suit your needs</p>
+            <div class="service-card">
+                <div class="service-header">
+                    <span class="service-icon">🏢</span>
+                    <h3>Corporate Training</h3>
+                    <p class="service-category">Professional Development</p>
+                </div>
+                <div class="service-content">
+                    <ul class="service-features">
+                        <li>Executive presentation skills enhancement</li>
+                        <li>Team communication and collaboration</li>
+                        <li>Client meeting effectiveness training</li>
+                        <li>Leadership communication coaching</li>
+                        <li>Corporate storytelling techniques</li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price">Custom Quote</div>
+                        <div class="price-note">Tailored corporate packages</div>
+                    </div>
+                    <a href="contact.html" class="service-cta">Request Quote →</a>
+                </div>
+            </div>
 
-        <div class="formats-grid">
-            <div class="format-card fade-in">
-                <div class="format-icon">
-                    <i class="fas fa-users"></i>
+            <div class="service-card">
+                <div class="service-header">
+                    <span class="service-icon">🌟</span>
+                    <h3>One-on-One Coaching</h3>
+                    <p class="service-category">Personalized Training</p>
                 </div>
-                <h3>Group Workshops</h3>
-                <p>Interactive sessions with small groups for collaborative learning and peer feedback.</p>
-                <ul class="format-features">
-                    <li>Small group sizes (max 12 participants)</li>
-                    <li>Interactive exercises and role-playing</li>
-                    <li>Peer feedback and collaboration</li>
-                    <li>Networking opportunities</li>
-                </ul>
-                <a href="contact.html" class="cta-button">Join a Workshop</a>
-            </div>
-            <div class="format-card fade-in">
-                <div class="format-icon">
-                    <i class="fas fa-user"></i>
+                <div class="service-content">
+                    <ul class="service-features">
+                        <li>Individualized communication assessment</li>
+                        <li>Personalized skill development plan</li>
+                        <li>Flexible scheduling options</li>
+                        <li>Ongoing progress tracking and feedback</li>
+                        <li>Confidential coaching sessions</li>
+                    </ul>
+                    <div class="service-pricing">
+                        <div class="price">From R500/hr</div>
+                        <div class="price-note">Package discounts available</div>
+                    </div>
+                    <a href="contact.html" class="service-cta">Start Coaching →</a>
                 </div>
-                <h3>One-on-One Coaching</h3>
-                <p>Personalized sessions tailored to your specific goals and challenges.</p>
-                <ul class="format-features">
-                    <li>Customized curriculum</li>
-                    <li>Flexible scheduling</li>
-                    <li>Targeted skill development</li>
-                    <li>Confidential feedback</li>
-                </ul>
-                <a href="contact.html" class="cta-button">Book a Session</a>
             </div>
-            <div class="format-card fade-in">
-                <div class="format-icon">
-                    <i class="fas fa-building"></i>
-                </div>
-                <h3>Corporate Training</h3>
-                <p>Custom programs designed for organizations to enhance team communication.</p>
-                <ul class="format-features">
-                    <li>Tailored to organizational needs</li>
-                    <li>On-site or virtual delivery</li>
-                    <li>Team-building focus</li>
-                    <li>Measurable outcomes</li>
-                </ul>
-                <a href="contact.html" class="cta-button">Inquire Now</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="cta">
-        <h2 class="section-title fade-in">Ready to Transform Your Communication Skills?</h2>
-        <p class="section-subtitle fade-in">Join our programs and become a confident, articulate communicator</p>
-        <div class="cta-buttons">
-            <a href="contact.html" class="cta-button">Get Started Today</a>
-            <a href="about.html" class="cta-button outline">Learn More About Us</a>
-        </div>
-    </section>
+        <!-- Training Formats -->
+        <section class="formats-section fade-in">
+            <div class="section-header">
+                <div class="section-tag">Learning Options</div>
+                <h2 class="section-title">Flexible Training Formats</h2>
+                <p class="section-description">Choose the learning style that works best for your schedule and preferences.</p>
+            </div>
+            <div class="formats-grid">
+                <div class="format-card">
+                    <span class="format-icon">🏢</span>
+                    <h3>In-Person Workshops</h3>
+                    <p>Interactive group sessions at our training facility or your location with hands-on practice and immediate feedback.</p>
+                </div>
+                <div class="format-card">
+                    <span class="format-icon">💻</span>
+                    <h3>Virtual Training</h3>
+                    <p>Live online sessions with expert facilitators, accessible from anywhere with interactive digital collaboration tools.</p>
+                </div>
+                <div class="format-card">
+                    <span class="format-icon">📚</span>
+                    <h3>Self-Paced Courses</h3>
+                    <p>Comprehensive online modules with video lessons, practical exercises, and resources you can complete on your schedule.</p>
+                </div>
+                <div class="format-card">
+                    <span class="format-icon">🤝</span>
+                    <h3>Hybrid Programs</h3>
+                    <p>Combine in-person intensives with ongoing virtual support for comprehensive skill development and practice.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section fade-in">
+            <div class="section-header">
+                <div class="section-tag">Client Feedback</div>
+                <h2 class="section-title">Success Stories</h2>
+                <p class="section-description">Hear from our satisfied clients and program participants.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">The public speaking program transformed my confidence. I went from avoiding presentations to leading company meetings with ease. The personalized coaching made all the difference in my professional growth.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TM</div>
+                        <div class="author-info">
+                            <h4>Thabo Mokoena</h4>
+                            <p>Marketing Manager, Tech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">SpeechCraft's business pitching workshop helped us secure R500,000 in funding. Their practical approach and real-world exercises prepared us perfectly for high-stakes investor meetings.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SN</div>
+                        <div class="author-info">
+                            <h4>Sarah Ndlovu</h4>
+                            <p>Founder, Green Innovations</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">As a teacher, the facilitation training revolutionized my classroom dynamics. I now lead engaging discussions that keep students actively participating and deeply learning.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LJ</div>
+                        <div class="author-info">
+                            <h4>Lerato Johnson</h4>
+                            <p>Educator, Johannesburg High School</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process-section fade-in">
+            <div class="process-content">
+                <div class="section-header">
+                    <div class="section-tag">How It Works</div>
+                    <h2 class="section-title">Our Training Process</h2>
+                    <p class="section-description">A structured approach designed to ensure your communication success and measurable results.</p>
+                </div>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <span class="step-number">01</span>
+                        <h3>Assessment</h3>
+                        <p>We begin with a comprehensive evaluation of your current communication skills, challenges, and specific goals.</p>
+                    </div>
+                    <div class="process-step">
+                        <span class="step-number">02</span>
+                        <h3>Customization</h3>
+                        <p>Your training program is tailored to address your unique needs, learning style, and objectives.</p>
+                    </div>
+                    <div class="process-step">
+                        <span class="step-number">03</span>
+                        <h3>Implementation</h3>
+                        <p>Engage in hands-on training with expert facilitators using proven techniques and practical exercises.</p>
+                    </div>
+                    <div class="process-step">
+                        <span class="step-number">04</span>
+                        <h3>Evaluation</h3>
+                        <p>We measure your progress with detailed feedback and ongoing support to ensure continuous improvement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section fade-in">
+            <h2>Ready to Transform Your Communication?</h2>
+            <p>Join hundreds of successful individuals and organizations who have enhanced their communication abilities with SpeechCraft Academy. Let's start your journey to confident, impactful communication today.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">
+                    <span>Get Started Today</span>
+                    <span>→</span>
+                </a>
+                <a href="contact.html" class="btn btn-secondary">
+                    <span>Request Consultation</span>
+                </a>
+            </div>
+        </section>
+    </div>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>SpeechCraft Academy</h3>
-                <p>Empowering voices, inspiring leaders, shaping change through effective communication training and social impact initiatives.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h3>Contact Info</h3>
-                <p><i class="fas fa-map-marker-alt"></i> 39 Cnr Arras & Elizabeth street, Witbank, 1035</p>
-                <p><i class="fas fa-phone"></i> 071 123 0001</p>
-                <p><i class="fas fa-envelope"></i> amanda@speechcraftacademy.co.za</p>
-                <p><i class="fas fa-envelope"></i> admin@speechcraftacademy.co.za</p>
-            </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="services.html">Our Services</a>
-                <a href="impact.html">Social Impact</a>
-                <a href="contact.html">Contact Us</a>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2023-2025 SpeechCraft Academy. All rights reserved. Empowering voices, inspiring leaders, shaping change.</p>
-        </div>
+        <p>&copy; 2023-2025 SpeechCraft Academy. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.9;">Empowering voices • Inspiring leaders • Shaping change</p>
     </footer>
-
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-chevron-up"></i>
-    </div>
 
     <script>
         // Mobile menu toggle
@@ -1163,6 +1349,47 @@
             }
         });
 
+        // Progress bar
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollPosition = window.scrollY;
+            const progress = (scrollPosition / documentHeight) * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
         // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
@@ -1181,67 +1408,13 @@
             observer.observe(el);
         });
 
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
-        
+        // Parallax effect for hero section
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
+            const hero = document.querySelector('.page-hero');
+            const scrolled = window.pageYOffset;
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.4}px)`;
             }
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Tab functionality
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons and contents
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                // Show corresponding content
-                const tabId = button.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-
-        // Smooth scrolling for category links
-        document.querySelectorAll('.category-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetTab = document.querySelector(`[data-tab="${targetId.substring(1)}"]`);
-                
-                if (targetTab) {
-                    // Remove active class from all buttons and contents
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Add active class to target button
-                    targetTab.classList.add('active');
-                    
-                    // Show corresponding content
-                    document.getElementById(targetId.substring(1)).classList.add('active');
-                    
-                    // Scroll to service details section
-                    document.getElementById('service-details').scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
         });
     </script>
 </body>

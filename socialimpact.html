@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Speechcraft Academy</title>
+    <title>Social Impact | Speechcraft Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -219,7 +219,7 @@
         
         /* Page Header */
         .page-header {
-            background: linear-gradient(rgba(26, 58, 95, 0.8), rgba(26, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background: linear-gradient(rgba(26, 58, 95, 0.8), rgba(26, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
             color: white;
@@ -239,47 +239,83 @@
             opacity: 0.9;
         }
         
-        /* Story Section */
-        .story {
+        /* Impact Stats */
+        .impact-stats {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Foundation Section */
+        .foundation {
             background: var(--light);
         }
         
-        .story-content {
+        .foundation-content {
             display: flex;
             align-items: center;
             gap: 50px;
         }
         
-        .story-text {
+        .foundation-text {
             flex: 1;
         }
         
-        .story-image {
+        .foundation-image {
             flex: 1;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
-        .story-image img {
+        .foundation-image img {
             width: 100%;
             height: auto;
             display: block;
             transition: var(--transition);
         }
         
-        .story-image:hover img {
+        .foundation-image:hover img {
             transform: scale(1.05);
         }
         
-        /* Mission & Vision */
-        .mission-vision {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+        /* Programs Section */
+        .programs {
+            text-align: center;
         }
         
-        .mission-card, .vision-card {
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .program-card {
             background: white;
             border-radius: 8px;
             padding: 40px 30px;
@@ -289,59 +325,100 @@
             border-top: 4px solid var(--secondary);
         }
         
-        .mission-card:hover, .vision-card:hover {
+        .program-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         
-        .mission-icon, .vision-icon {
+        .program-icon {
             font-size: 3rem;
             margin-bottom: 20px;
             color: var(--primary);
         }
         
-        /* Social Enterprise Model */
-        .enterprise-model {
+        .program-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        /* Success Stories */
+        .success-stories {
             background: var(--light);
         }
         
-        .model-content {
+        .stories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .story-quote {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .story-author {
             display: flex;
             align-items: center;
-            gap: 50px;
         }
         
-        .model-content.reverse {
-            flex-direction: row-reverse;
-        }
-        
-        .model-text {
-            flex: 1;
-        }
-        
-        .model-image {
-            flex: 1;
-            border-radius: 8px;
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-right: 15px;
         }
         
-        .model-image img {
+        .author-image img {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: cover;
         }
         
-        .model-steps {
+        .author-info h4 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .author-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            text-align: center;
+        }
+        
+        .process-steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 50px;
         }
         
-        .model-step {
+        .process-step {
             text-align: center;
             padding: 30px 20px;
+            position: relative;
         }
         
         .step-number {
@@ -358,162 +435,83 @@
             margin: 0 auto 20px;
         }
         
-        /* Team Section */
-        .team {
-            text-align: center;
+        .step-connector {
+            position: absolute;
+            top: 30px;
+            right: -15px;
+            width: 30px;
+            height: 2px;
+            background: var(--secondary);
+            display: none;
         }
         
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+        @media (min-width: 768px) {
+            .step-connector {
+                display: block;
+            }
+            
+            .process-step:last-child .step-connector {
+                display: none;
+            }
         }
         
-        .team-member {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: var(--transition);
-        }
-        
-        .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .member-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            border: 4px solid var(--light);
-        }
-        
-        .member-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .member-name {
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        
-        .member-role {
-            color: var(--secondary);
-            font-weight: 500;
-            margin-bottom: 15px;
-        }
-        
-        .member-bio {
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-        
-        .member-social {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .member-social a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--light);
-            color: var(--primary);
-            transition: var(--transition);
-        }
-        
-        .member-social a:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        /* Values Section */
-        .values {
-            background: var(--light);
-        }
-        
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .value-card {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: var(--transition);
-        }
-        
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .value-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .value-card h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        /* Partners Section */
-        .partners {
-            text-align: center;
-        }
-        
-        .partners-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-top: 40px;
-        }
-        
-        .partner-logo {
-            height: 60px;
-            filter: grayscale(100%);
-            opacity: 0.7;
-            transition: var(--transition);
-        }
-        
-        .partner-logo:hover {
-            filter: grayscale(0);
-            opacity: 1;
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(rgba(26, 58, 95, 0.9), rgba(26, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+        /* Get Involved */
+        .get-involved {
+            background: linear-gradient(rgba(26, 58, 95, 0.9), rgba(26, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
             color: white;
             text-align: center;
         }
         
-        .cta h2 {
+        .get-involved h2 {
             color: white;
         }
         
-        .cta h2:after {
+        .get-involved h2:after {
             background: var(--secondary);
+        }
+        
+        .involvement-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .involvement-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 40px 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+        
+        .involvement-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .involvement-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .involvement-card h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: var(--light);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: var(--primary);
         }
         
         .cta p {
@@ -622,11 +620,7 @@
                 padding: 150px 0 80px;
             }
             
-            .story-content, .model-content {
-                flex-direction: column;
-            }
-            
-            .model-content.reverse {
+            .foundation-content {
                 flex-direction: column;
             }
         }
@@ -672,6 +666,10 @@
             section {
                 padding: 60px 0;
             }
+            
+            .step-connector {
+                display: none;
+            }
         }
         
         @media (max-width: 576px) {
@@ -683,8 +681,12 @@
                 font-size: 1.8rem;
             }
             
-            .mission-card, .vision-card, .team-member, .value-card {
+            .program-card, .involvement-card {
                 padding: 30px 20px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -700,8 +702,8 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="socialimpact.html">Social Impact</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="impact.html" class="active">Social Impact</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <div class="mobile-menu">
@@ -714,80 +716,183 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>About Speechcraft Academy</h1>
-            <p>Discover our story, mission, and the passionate team behind our mission to empower voices and inspire leaders across South Africa.</p>
+            <h1>Social Impact</h1>
+            <p>Transforming lives through communication skills development in underserved communities. Every training program you purchase helps fund our youth development initiatives.</p>
         </div>
     </section>
 
-    <!-- Our Story Section -->
-    <section class="story">
+    <!-- Impact Stats -->
+    <section class="impact-stats">
         <div class="container">
-            <div class="story-content">
-                <div class="story-text">
-                    <h2>Our Story</h2>
-                    <p>Founded in 2023, Speechcraft Academy emerged from a simple but powerful observation: the ability to communicate effectively is one of the most transformative skills an individual can possess, yet it remains out of reach for many.</p>
-                    <p>Our founder, Amanda Nkuna, witnessed firsthand how confident communication could unlock opportunities in both professional and personal contexts. Drawing from years of experience in education and corporate training, she established Speechcraft Academy with a dual mission: to provide world-class communication training while making a tangible social impact.</p>
-                    <p>What began as a small initiative has grown into a respected social enterprise that has trained hundreds of individuals and partnered with numerous organizations, all while supporting youth development in underserved communities through our Foundation.</p>
-                    <a href="impact.html" class="btn btn-primary">Our Social Impact</a>
+            <div class="stats-container">
+                <div class="stat">
+                    <span class="stat-number" data-count="30">0</span>
+                    <span class="stat-label">Schools Supported</span>
                 </div>
-                <div class="story-image">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Speechcraft Academy Team">
+                <div class="stat">
+                    <span class="stat-number" data-count="1000">0</span>
+                    <span class="stat-label">Youth Impacted</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="250">0</span>
+                    <span class="stat-label">Book Clubs Established</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="75">0</span>
+                    <span class="stat-label">Debate Teams Formed</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mission & Vision Section -->
-    <section class="mission-vision-section">
+    <!-- Foundation Section -->
+    <section class="foundation">
         <div class="container">
-            <h2>Our Mission & Vision</h2>
-            <div class="mission-vision">
-                <div class="mission-card">
-                    <div class="mission-icon"><i class="fas fa-bullseye"></i></div>
-                    <h3>Our Mission</h3>
-                    <p>To boost speakers' self-confidence, nurture critical thinking, and foster research and preparation skills that enable individuals to lead compelling conversations and drive positive change in their communities.</p>
+            <div class="foundation-content">
+                <div class="foundation-text">
+                    <h2>The Speechcraft Academy Foundation</h2>
+                    <p>At the heart of our social impact mission is the <strong>Speechcraft Academy Foundation</strong>, a registered Non-Profit Company (NPC) dedicated to empowering youth in underserved communities through communication skills development.</p>
+                    <p>Through the Foundation, we channel a significant portion of our profits into public school programs that focus on establishing and strengthening:</p>
+                    <ul class="service-features">
+                        <li>Book reading clubs to foster literacy and critical thinking</li>
+                        <li>Debate societies to develop analytical and reasoning skills</li>
+                        <li>Public speaking programs to build confidence and self-expression</li>
+                        <li>Poetry and creative writing initiatives</li>
+                        <li>Entrepreneurship and digital skills training for youth</li>
+                    </ul>
+                    <p>Our model ensures that for every corporate training program or individual course purchased, we're able to extend our impact to learners who would otherwise not have access to these transformative skills.</p>
                 </div>
-                <div class="vision-card">
-                    <div class="vision-icon"><i class="fas fa-eye"></i></div>
-                    <h3>Our Vision</h3>
-                    <p>To empower individuals to become a generation that is articulate, informed, and confident, capable of influencing positive change through powerful communication in all spheres of society.</p>
+                <div class="foundation-image">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Speechcraft Academy Foundation">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Social Enterprise Model -->
-    <section class="enterprise-model">
+    <!-- Programs Section -->
+    <section class="programs">
         <div class="container">
-            <h2>Our Social Enterprise Model</h2>
-            <div class="model-content">
-                <div class="model-text">
-                    <p>Speechcraft Academy operates on a unique social enterprise model that combines professional excellence with meaningful social impact. We believe that business success and social responsibility are not mutually exclusive but rather complementary forces for positive change.</p>
-                    <p>Through this innovative approach, we reinvest a significant portion of our profits into the <strong>Speechcraft Academy Foundation</strong>, a registered Non-Profit Company that supports public schools by establishing and strengthening communication-based youth development programs.</p>
-                    <p>This means that when you invest in our training programs, you're not just developing your own skills—you're also contributing to the development of future leaders in underserved communities.</p>
-                </div>
-                <div class="model-image">
-                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Social Enterprise Model">
-                </div>
-            </div>
+            <h2>Our Foundation Programs</h2>
+            <p>We implement targeted programs designed to develop confident communicators and future leaders</p>
             
-            <div class="model-steps">
-                <div class="model-step">
-                    <div class="step-number">1</div>
-                    <h3>Professional Training</h3>
-                    <p>We deliver high-quality communication training to individuals and corporations</p>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-book-reader"></i></div>
+                    <h3>Reading & Literacy Clubs</h3>
+                    <p>We establish and support book reading clubs in public schools to foster a love for reading, improve literacy rates, and develop critical thinking skills among learners.</p>
                 </div>
-                <div class="model-step">
+                
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Debate Societies</h3>
+                    <p>Our debate programs teach students to construct logical arguments, consider multiple perspectives, and articulate their thoughts clearly and persuasively.</p>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-microphone"></i></div>
+                    <h3>Public Speaking Initiatives</h3>
+                    <p>We organize public speaking competitions and workshops that help students overcome stage fright and develop confidence in expressing their ideas.</p>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-pen-fancy"></i></div>
+                    <h3>Creative Expression</h3>
+                    <p>Through poetry slams, storytelling sessions, and creative writing workshops, we encourage students to find and use their unique voices.</p>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Digital Skills Training</h3>
+                    <p>We provide basic digital literacy and online communication skills training to prepare youth for the modern workplace.</p>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Youth Entrepreneurship</h3>
+                    <p>Our entrepreneurship programs teach business communication, pitching ideas, and developing persuasive presentation skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="success-stories">
+        <div class="container">
+            <h2>Impact Stories</h2>
+            <p>Hear from the students, teachers, and communities whose lives have been transformed through our programs</p>
+            
+            <div class="stories-container">
+                <div class="story-card">
+                    <p class="story-quote">"Before joining the debate club, I was too shy to even answer questions in class. Now I've represented my school in provincial competitions. Speechcraft Academy gave me my voice."</p>
+                    <div class="story-author">
+                        <div class="author-image">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616c113a1c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Lerato M">
+                        </div>
+                        <div class="author-info">
+                            <h4>Lerato M.</h4>
+                            <p>Grade 11 Student, Soweto</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <p class="story-quote">"The reading club has completely transformed our school's culture. Students who never used to read are now our most enthusiastic library visitors. Their academic performance has improved dramatically."</p>
+                    <div class="story-author">
+                        <div class="author-image">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mr. Bhengu">
+                        </div>
+                        <div class="author-info">
+                            <h4>Mr. Bhengu</h4>
+                            <p>Teacher, Alexandra Township</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <p class="story-quote">"Through the entrepreneurship program, I learned how to pitch my small business idea. I recently received funding to start my own clothing line while still in high school."</p>
+                    <div class="story-author">
+                        <div class="author-image">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Zanele K">
+                        </div>
+                        <div class="author-info">
+                            <h4>Zanele K.</h4>
+                            <p>Youth Entrepreneur, Durban</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How Our Model Works</h2>
+            <p>Our social enterprise model creates a sustainable cycle of impact</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-connector"></div>
+                    <h3>Professional Training</h3>
+                    <p>We provide high-quality communication training to corporations and individuals</p>
+                </div>
+                
+                <div class="process-step">
                     <div class="step-number">2</div>
+                    <div class="step-connector"></div>
                     <h3>Revenue Generation</h3>
                     <p>Training fees generate revenue to sustain and grow our operations</p>
                 </div>
-                <div class="model-step">
+                
+                <div class="process-step">
                     <div class="step-number">3</div>
+                    <div class="step-connector"></div>
                     <h3>Profit Reinvestment</h3>
                     <p>A significant portion of profits is channeled to our Foundation</p>
                 </div>
-                <div class="model-step">
+                
+                <div class="process-step">
                     <div class="step-number">4</div>
                     <h3>Youth Development</h3>
                     <p>Foundation programs empower youth in underserved communities</p>
@@ -796,112 +901,40 @@
         </div>
     </section>
 
-    <!-- Our Team Section -->
-    <section class="team">
+    <!-- Get Involved -->
+    <section class="get-involved">
         <div class="container">
-            <h2>Meet Our Team</h2>
-            <p>The passionate professionals driving our mission forward</p>
+            <h2>Get Involved</h2>
+            <p>Join us in creating a generation of confident, articulate leaders</p>
             
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Amanda Nkuna">
-                    </div>
-                    <h3 class="member-name">Amanda Nkuna</h3>
-                    <p class="member-role">CEO & Facilitator</p>
-                    <p class="member-bio">Amanda founded Speechcraft Academy with a vision to transform communication skills training in South Africa. With over 8 years of experience in education and corporate training, she brings passion and expertise to every program.</p>
-                    <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+            <div class="involvement-options">
+                <div class="involvement-card">
+                    <div class="involvement-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Corporate Partnerships</h3>
+                    <p>Partner with us to deliver training to your team while supporting youth development through our Foundation.</p>
+                    <a href="contact.html" class="btn btn-outline" style="margin-top: 15px;">Become a Partner</a>
                 </div>
                 
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Lesedi Matong">
-                    </div>
-                    <h3 class="member-name">Lesedi Matong</h3>
-                    <p class="member-role">Facilitator</p>
-                    <p class="member-bio">Lesedi specializes in youth development and facilitation training. His engaging teaching style and expertise in participatory methodologies make him a favorite among our corporate and student clients alike.</p>
-                    <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon"><i class="fas fa-donate"></i></div>
+                    <h3>Direct Donations</h3>
+                    <p>Support our Foundation directly with a financial contribution to expand our reach to more schools and learners.</p>
+                    <a href="contact.html" class="btn btn-outline" style="margin-top: 15px;">Donate Now</a>
                 </div>
                 
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Lebogang Mokoena">
-                    </div>
-                    <h3 class="member-name">Lebogang Mokoena</h3>
-                    <p class="member-role">Administrator</p>
-                    <p class="member-bio">Lebogang ensures the smooth operation of all our programs with exceptional organizational skills and attention to detail. She is the backbone of our administrative processes and client relations.</p>
-                    <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon"><i class="fas fa-hands-helping"></i></div>
+                    <h3>Volunteer</h3>
+                    <p>Share your expertise by volunteering as a mentor, facilitator, or program assistant in our youth initiatives.</p>
+                    <a href="contact.html" class="btn btn-outline" style="margin-top: 15px;">Volunteer</a>
                 </div>
                 
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Siphokazi Ndlovu">
-                    </div>
-                    <h3 class="member-name">Siphokazi Ndlovu</h3>
-                    <p class="member-role">Marketing & Social Media Manager</p>
-                    <p class="member-bio">Siphokazi brings our story to life through compelling content and strategic marketing. She manages our brand presence across all platforms and ensures our message reaches those who need it most.</p>
-                    <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon"><i class="fas fa-school"></i></div>
+                    <h3>School Partnerships</h3>
+                    <p>If you're an educator or school administrator, partner with us to bring our programs to your institution.</p>
+                    <a href="contact.html" class="btn btn-outline" style="margin-top: 15px;">Partner with Us</a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Values Section -->
-    <section class="values">
-        <div class="container">
-            <h2>Our Values</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-users"></i></div>
-                    <h3>Empowerment</h3>
-                    <p>We believe in unlocking the potential in every individual, giving them the tools and confidence to express themselves effectively.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-heart"></i></div>
-                    <h3>Social Impact</h3>
-                    <p>Our commitment to community development is at the core of everything we do, driving our social enterprise model.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>Excellence</h3>
-                    <p>We maintain the highest standards in our training methodologies, content, and facilitator development.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
-                    <h3>Collaboration</h3>
-                    <p>We believe in the power of partnerships to create greater impact than any organization could achieve alone.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Partners Section -->
-    <section class="partners">
-        <div class="container">
-            <h2>Our Partners & Collaborations</h2>
-            <p>We're proud to work with leading organizations and institutions</p>
-            <div class="partners-logos">
-                <img src="https://via.placeholder.com/150x60/1a3a5f/ffffff?text=TUT" alt="Tshwane University of Technology" class="partner-logo">
-                <img src="https://via.placeholder.com/150x60/1a3a5f/ffffff?text=Gauteng+Gov" alt="Gauteng Provincial Government" class="partner-logo">
-                <img src="https://via.placeholder.com/150x60/1a3a5f/ffffff?text=Mpumalanga" alt="Mpumalanga Provincial Government" class="partner-logo">
-                <img src="https://via.placeholder.com/150x60/1a3a5f/ffffff?text=KISS+Eng" alt="KISS Engineering" class="partner-logo">
-                <img src="https://via.placeholder.com/150x60/1a3a5f/ffffff?text=Gateway" alt="Gateway Church International" class="partner-logo">
             </div>
         </div>
     </section>
@@ -909,9 +942,9 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2>Join Our Mission</h2>
-            <p>Whether you're looking to develop your communication skills, train your team, or partner with us to create social impact, we'd love to hear from you.</p>
-            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+            <h2>Ready to Make an Impact?</h2>
+            <p>Whether you're looking to develop your team's communication skills or support youth development in underserved communities, we can help you create meaningful change.</p>
+            <a href="contact.html" class="btn btn-primary">Contact Us Today</a>
         </div>
     </section>
 
@@ -978,6 +1011,37 @@
                 header.classList.remove('header-scrolled');
             }
         });
+
+        // Animated Counter for Stats
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        function animateCounter() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animateCounter, 10);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        }
+
+        // Start counter animation when in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.impact-stats'));
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

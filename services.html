@@ -3,1418 +3,914 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services - SpeechCraft Academy</title>
-    <link rel="icon" href="assets/speechcraftLogo.png" type="image/png">
+    <title>Our Services | Speechcraft Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #1a3a5f;
+            --secondary: #d4af37;
+            --accent: #e63946;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        :root {
-            --primary: #d97706;
-            --primary-dark: #b45309;
-            --secondary: #f59e0b;
-            --accent: #fbbf24;
-            --purple: #7c3aed;
-            --purple-light: #a78bfa;
-            --dark: #1e293b;
-            --gray: #475569;
-            --light: #fef3c7;
-            --white: #ffffff;
-            --gradient-warm: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
-        }
-
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--dark);
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
             overflow-x: hidden;
-            background: var(--white);
         }
-
-        /* Progress Bar */
-        .progress-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
             height: 4px;
+            background: var(--secondary);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #142c47;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background: #c19b2c;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
             background: transparent;
-            z-index: 1001;
+            color: var(--primary);
+            border: 2px solid var(--primary);
         }
-
-        .progress-bar {
-            height: 4px;
-            background: var(--gradient-warm);
-            width: 0%;
-            transition: width 0.3s ease;
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
         }
-
-        /* Navigation */
-        nav {
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .header-scrolled {
+            padding: 10px 0;
             background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            padding: 1.2rem 8%;
+        }
+        
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(217, 119, 6, 0.1);
-            transition: all 0.3s ease;
+            padding: 20px 0;
         }
-
-        nav.scrolled {
-            padding: 0.8rem 8%;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo-container {
+        
+        .logo {
             display: flex;
             align-items: center;
-            gap: 1rem;
         }
-
+        
         .logo-text {
-            font-size: 1.6rem;
-            font-weight: 800;
-            background: var(--gradient-warm);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 0.5px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
         }
-
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
         .nav-links {
             display: flex;
-            gap: 2.5rem;
             list-style: none;
-            align-items: center;
         }
-
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
         .nav-links a {
-            color: var(--dark);
             text-decoration: none;
+            color: var(--dark);
             font-weight: 500;
-            font-size: 0.95rem;
+            transition: var(--transition);
             position: relative;
-            transition: color 0.3s ease;
         }
-
-        .nav-links a::after {
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:after {
             content: '';
             position: absolute;
             bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
+            background: var(--secondary);
+            transition: var(--transition);
         }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
+        
+        .nav-links a:hover:after {
             width: 100%;
         }
-
-        .menu-toggle {
+        
+        .mobile-menu {
             display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--primary);
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        /* Hero Section */
-        .page-hero {
-            min-height: 70vh;
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 10rem 8% 6rem;
-            position: relative;
-            overflow: hidden;
-            margin-top: 80px;
-        }
-
-        .sound-waves {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            opacity: 0.1;
-        }
-
-        .wave {
-            position: absolute;
-            width: 200%;
-            height: 100px;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 40px,
-                var(--primary) 40px,
-                var(--primary) 42px
-            );
-            animation: wave-animation 20s linear infinite;
-        }
-
-        .wave:nth-child(1) { top: 20%; animation-delay: 0s; }
-        .wave:nth-child(2) { top: 40%; animation-delay: 2s; }
-        .wave:nth-child(3) { top: 60%; animation-delay: 4s; }
-        .wave:nth-child(4) { top: 80%; animation-delay: 6s; }
-
-        @keyframes wave-animation {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .hero-microphone {
-            position: absolute;
-            font-size: 25rem;
-            opacity: 0.03;
-            right: -5%;
-            top: 50%;
-            transform: translateY(-50%) rotate(-15deg);
-        }
-
-        .page-hero-content {
-            max-width: 900px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
-            padding: 0.7rem 1.8rem;
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid var(--primary);
-            border-radius: 50px;
-            color: var(--primary);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .page-hero h1 {
-            font-size: 5rem;
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-            letter-spacing: -2px;
-            line-height: 1.1;
-            animation: fadeInUp 0.8s ease 0.2s backwards;
-        }
-
-        .page-hero h1 .highlight {
-            background: var(--gradient-warm);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .page-hero p {
             font-size: 1.5rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-            animation: fadeInUp 0.8s ease 0.4s backwards;
+            cursor: pointer;
         }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            color: var(--primary);
-            font-size: 2rem;
-            z-index: 2;
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(26, 58, 95, 0.8), rgba(26, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
         }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
         }
-
-        /* Main Content */
-        .content-wrapper {
-            max-width: 1400px;
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 8rem 8%;
+            opacity: 0.9;
         }
-
+        
         /* Services Overview */
         .services-overview {
+            background: var(--light);
+        }
+        
+        .services-intro {
             text-align: center;
-            margin-bottom: 6rem;
-        }
-
-        .services-overview h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-            font-weight: 900;
-            letter-spacing: -1px;
-        }
-
-        .services-overview p {
-            font-size: 1.1rem;
-            color: var(--gray);
             max-width: 800px;
-            margin: 0 auto 4rem;
-            line-height: 1.9;
+            margin: 0 auto 50px;
         }
-
-        .services-stats {
+        
+        .services-categories {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-
-        .stat-box {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            padding: 2.5rem 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-        }
-
-        .stat-box:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.2);
-            border-color: var(--primary);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
-            background: var(--gradient-warm);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-            line-height: 1;
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 8rem;
-        }
-
-        .service-card {
+        
+        .category-card {
             background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-            display: flex;
-            flex-direction: column;
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border-top: 4px solid var(--secondary);
         }
-
-        .service-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.15);
-            border-color: var(--accent);
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
-
-        .service-header {
-            background: var(--gradient-warm);
-            padding: 3rem 2.5rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
+        
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
         }
-
-        .service-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-            animation: float-circle 6s ease-in-out infinite;
+        
+        .category-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
         }
-
-        @keyframes float-circle {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-20px, -20px) scale(1.1); }
+        
+        .category-card p {
+            margin-bottom: 20px;
         }
-
-        .service-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            position: relative;
-            z-index: 1;
+        
+        /* Service Detail Sections */
+        .service-detail {
+            padding: 80px 0;
         }
-
-        .service-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
-            font-weight: 800;
+        
+        .service-detail:nth-child(even) {
+            background: var(--light);
         }
-
-        .service-category {
-            font-size: 1rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
-            font-weight: 500;
-        }
-
+        
         .service-content {
-            padding: 2.5rem;
-            flex-grow: 1;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 50px;
         }
-
+        
+        .service-content.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .service-text {
+            flex: 1;
+        }
+        
+        .service-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .service-image:hover img {
+            transform: scale(1.05);
+        }
+        
         .service-features {
             list-style: none;
-            margin-bottom: 2rem;
-            flex-grow: 1;
+            margin: 25px 0;
         }
-
+        
         .service-features li {
-            padding: 1rem 0;
-            padding-left: 2.5rem;
+            margin-bottom: 12px;
+            padding-left: 30px;
             position: relative;
-            color: var(--gray);
-            border-bottom: 1px solid var(--light);
-            line-height: 1.7;
-            font-size: 0.95rem;
         }
-
-        .service-features li:last-child {
-            border-bottom: none;
-        }
-
-        .service-features li::before {
-            content: '→';
+        
+        .service-features li:before {
+            content: '✓';
             position: absolute;
             left: 0;
-            color: var(--primary);
+            color: var(--secondary);
             font-weight: bold;
-            font-size: 1.3rem;
-        }
-
-        .service-pricing {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: var(--gradient-warm);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-            line-height: 1;
-        }
-
-        .price-note {
-            font-size: 0.9rem;
-            color: var(--gray);
-            font-weight: 500;
-        }
-
-        .service-cta {
-            display: block;
-            width: 100%;
-            padding: 1.2rem;
-            background: var(--gradient-warm);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            text-decoration: none;
-            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
-        }
-
-        .service-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
-        }
-
-        /* Training Formats */
-        .formats-section {
-            margin-bottom: 8rem;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 5rem;
-        }
-
-        .section-tag {
-            display: inline-block;
-            font-size: 0.85rem;
-            color: var(--primary);
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--dark);
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-        }
-
-        .section-description {
-            font-size: 1.1rem;
-            color: var(--gray);
-            line-height: 1.8;
-        }
-
-        .formats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .format-card {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            padding: 3rem 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-        }
-
-        .format-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.2);
-            border-color: var(--primary);
-        }
-
-        .format-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            transition: all 0.4s ease;
-        }
-
-        .format-card:hover .format-icon {
-            transform: scale(1.15) rotate(5deg);
-        }
-
-        .format-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-            font-weight: 800;
-        }
-
-        .format-card p {
-            color: var(--gray);
-            line-height: 1.8;
-            font-size: 0.95rem;
-        }
-
-        /* Testimonials */
-        .testimonials-section {
-            margin-bottom: 8rem;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
-            position: relative;
-            border: 2px solid transparent;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.15);
-            border-color: var(--accent);
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 25px;
-            left: 30px;
-            font-size: 5rem;
-            color: var(--accent);
-            opacity: 0.15;
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            line-height: 1.9;
-            font-size: 0.95rem;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 55px;
-            height: 55px;
-            background: var(--gradient-warm);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
             font-size: 1.2rem;
         }
-
-        .author-info h4 {
-            color: var(--dark);
-            margin-bottom: 0.3rem;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .author-info p {
-            color: var(--gray);
-            font-size: 0.85rem;
-        }
-
-        /* Process Section */
-        .process-section {
-            background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
-            padding: 8rem 8%;
-            border-radius: 32px;
+        
+        /* Pricing Section */
+        .pricing {
+            background: linear-gradient(rgba(26, 58, 95, 0.9), rgba(26, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
             color: white;
-            margin-bottom: 8rem;
-            position: relative;
-            overflow: hidden;
+            text-align: center;
         }
-
-        .process-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
-        }
-
-        .process-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .process-section .section-header {
-            position: relative;
-            z-index: 1;
-        }
-
-        .process-section .section-tag {
-            color: var(--accent);
-        }
-
-        .process-section .section-title,
-        .process-section .section-description {
+        
+        .pricing h2 {
             color: white;
         }
-
-        .process-steps {
+        
+        .pricing h2:after {
+            background: var(--secondary);
+        }
+        
+        .pricing-plans {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
-
-        .process-step {
-            background: rgba(255, 255, 255, 0.15);
+        
+        .pricing-plan {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 40px 30px;
             backdrop-filter: blur(10px);
-            padding: 2.5rem;
-            border-radius: 20px;
+            transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            transition: all 0.4s ease;
         }
-
-        .process-step:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-8px);
-            border-color: var(--accent);
+        
+        .pricing-plan.featured {
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid var(--secondary);
+            transform: scale(1.05);
         }
-
-        .step-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            display: block;
-            line-height: 1;
+        
+        .pricing-plan:hover {
+            transform: translateY(-10px);
         }
-
-        .process-step h3 {
+        
+        .pricing-plan.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .plan-name {
             font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
         }
-
-        .process-step p {
-            line-height: 1.8;
-            opacity: 0.95;
-            font-size: 0.95rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            padding: 6rem 4rem;
-            border-radius: 32px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -200px;
-            right: -200px;
-        }
-
-        .cta-section h2 {
+        
+        .plan-price {
             font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-            font-weight: 900;
-            letter-spacing: -1px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-
-        .btn {
-            padding: 1.2rem 2.8rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
+            margin-bottom: 20px;
         }
-
-        .btn-primary {
-            background: var(--gradient-warm);
-            color: white;
-            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
+        
+        .plan-price span {
+            font-size: 1rem;
+            opacity: 0.8;
         }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
+        
+        .plan-features {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
         }
-
-        .btn-secondary {
-            background: white;
+        
+        .plan-features li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .plan-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .plan-features li.disabled {
+            opacity: 0.5;
+        }
+        
+        .plan-features li.disabled:before {
+            content: '×';
+            color: #e63946;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: var(--light);
+            text-align: center;
+        }
+        
+        .cta h2 {
             color: var(--primary);
-            border: 2px solid var(--primary);
         }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
         }
-
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 55px;
-            height: 55px;
-            background: var(--gradient-warm);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
-        }
-
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
-        }
-
+        
         /* Footer */
         footer {
             background: var(--dark);
             color: white;
-            padding: 3rem 8%;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            color: var(--secondary);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
             text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
         }
-
-        footer p {
-            opacity: 0.8;
-            font-size: 0.95rem;
-        }
-
-        /* Scroll Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .services-grid,
-            .formats-grid,
-            .testimonials-grid,
-            .process-steps {
-                grid-template-columns: 1fr;
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
             }
-
-            .page-hero h1 {
-                font-size: 3.5rem;
+            
+            h2 {
+                font-size: 2.2rem;
             }
-
-            .section-title {
-                font-size: 2.5rem;
+            
+            .page-header {
+                padding: 150px 0 80px;
+            }
+            
+            .service-content {
+                flex-direction: column;
+            }
+            
+            .service-content.reverse {
+                flex-direction: column;
+            }
+            
+            .pricing-plan.featured {
+                transform: scale(1);
+            }
+            
+            .pricing-plan.featured:hover {
+                transform: translateY(-10px);
             }
         }
-
+        
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem 5%;
+            .navbar {
+                padding: 15px 0;
             }
-
+            
             .nav-links {
                 position: fixed;
+                top: 70px;
                 left: -100%;
-                top: 80px;
-                flex-direction: column;
-                background: white;
                 width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0,0,0,0.1);
-                padding: 2rem 0;
-                gap: 1.5rem;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+                transition: var(--transition);
             }
-
+            
             .nav-links.active {
                 left: 0;
             }
-
-            .menu-toggle {
-                display: flex;
+            
+            .nav-links li {
+                margin: 15px 0;
             }
-
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
+            
+            .mobile-menu {
+                display: block;
             }
-
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-
-            .page-hero {
-                padding: 8rem 5% 4rem;
-                min-height: 60vh;
-            }
-
-            .page-hero h1 {
+            
+            .page-header h1 {
                 font-size: 2.5rem;
             }
-
-            .page-hero p {
-                font-size: 1.2rem;
+            
+            .page-header p {
+                font-size: 1.1rem;
             }
-
-            .content-wrapper {
-                padding: 5rem 5%;
+            
+            section {
+                padding: 60px 0;
             }
-
-            .process-section,
-            .cta-section {
-                padding: 5rem 5%;
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
             }
-
-            .cta-buttons {
-                flex-direction: column;
+            
+            h2 {
+                font-size: 1.8rem;
             }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .scroll-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
+            
+            .category-card, .pricing-plan {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Progress Bar -->
-    <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <div class="scroll-to-top" id="scrollToTop">↑</div>
-
-    <nav id="navbar">
-        <div class="logo-container">
-            <img src="assets/speechcraftLogo.png" height="60" width="60" alt="SpeechCraft Academy Logo">
-            <span class="logo-text">SpeechCraft</span>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-text">Speechcraft<span>Academy</span></div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="socialimpact.html">Social Impact</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
         </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="#" class="active">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+    </header>
 
-    <div class="page-hero">
-        <div class="sound-waves">
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive communication training programs designed to transform individuals and organizations into confident, impactful speakers and leaders.</p>
         </div>
-        <div class="hero-microphone">🎤</div>
-        <div class="page-hero-content">
-            <div class="hero-badge">
-                <span>💼</span>
-                <span>Our Programs</span>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview">
+        <div class="container">
+            <div class="services-intro">
+                <h2>Tailored Solutions for Every Need</h2>
+                <p>At Speechcraft Academy, we offer a diverse range of training programs designed to meet the unique communication challenges faced by individuals, teams, and organizations. Our evidence-based methodologies deliver measurable results.</p>
             </div>
-            <h1><span class="highlight">Transform</span> Your Voice</h1>
-            <p>Expert-led training programs designed to elevate your communication skills</p>
-        </div>
-        <div class="scroll-indicator">↓</div>
-    </div>
-
-    <div class="content-wrapper">
-        <!-- Services Overview -->
-        <section class="services-overview fade-in">
-            <h2>Comprehensive Communication Training</h2>
-            <p>At SpeechCraft Academy, we offer diverse programs designed to enhance your communication abilities, build confidence, and develop leadership skills. Our expert facilitators provide personalized training tailored to your specific needs and goals.</p>
             
-            <div class="services-stats">
-                <div class="stat-box">
-                    <div class="stat-number">5+</div>
-                    <div class="stat-label">Programs Offered</div>
+            <div class="services-categories">
+                <div class="category-card">
+                    <div class="category-icon"><i class="fas fa-microphone"></i></div>
+                    <h3>Public Speaking</h3>
+                    <p>Master the art of confident communication, from boardroom presentations to large-scale public addresses.</p>
+                    <a href="#public-speaking" class="btn btn-outline">Learn More</a>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Participants Trained</div>
+                
+                <div class="category-card">
+                    <div class="category-icon"><i class="fas fa-users"></i></div>
+                    <h3>Facilitation Training</h3>
+                    <p>Develop skills to guide productive discussions, manage diverse viewpoints, and foster collaboration.</p>
+                    <a href="#facilitation" class="btn btn-outline">Learn More</a>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number">30+</div>
-                    <div class="stat-label">Schools Reached</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Satisfaction Rate</div>
+                
+                <div class="category-card">
+                    <div class="category-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Business Communication</h3>
+                    <p>Craft compelling pitches, proposals, and presentations that drive business growth and secure partnerships.</p>
+                    <a href="#business" class="btn btn-outline">Learn More</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Services Grid -->
-        <section class="services-grid fade-in">
-            <div class="service-card">
-                <div class="service-header">
-                    <span class="service-icon">🎤</span>
-                    <h3>Public Speaking Mastery</h3>
-                    <p class="service-category">Leadership & Communication</p>
-                </div>
-                <div class="service-content">
+    <!-- Public Speaking Service Detail -->
+    <section class="service-detail" id="public-speaking">
+        <div class="container">
+            <div class="service-content">
+                <div class="service-text">
+                    <h2>Public Speaking & Leadership Development</h2>
+                    <p>Our comprehensive public speaking programs are designed to transform nervous speakers into confident communicators who can engage, persuade, and inspire any audience.</p>
+                    
                     <ul class="service-features">
-                        <li>Comprehensive speech writing and delivery techniques</li>
-                        <li>Advanced audience engagement strategies</li>
-                        <li>Overcoming stage fright and building confidence</li>
+                        <li>Speech writing and structuring techniques</li>
                         <li>Voice modulation and body language mastery</li>
-                        <li>Personalized feedback and expert coaching</li>
+                        <li>Audience analysis and engagement strategies</li>
+                        <li>Overcoming stage fright and building confidence</li>
+                        <li>Handling Q&A sessions with poise</li>
+                        <li>Leadership communication for executives</li>
                     </ul>
-                    <div class="service-pricing">
-                        <div class="price">From R1,500</div>
-                        <div class="price-note">Per session • Group discounts available</div>
-                    </div>
-                    <a href="contact.html" class="service-cta">Enroll Now →</a>
+                    
+                    <p>Whether you're preparing for a TEDx talk, a wedding speech, or corporate presentations, our tailored approach ensures you develop the skills and confidence to excel.</p>
+                    
+                    <a href="#contact" class="btn btn-primary">Enroll Now</a>
+                </div>
+                
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1551836026-d5c8cbf7e6b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Public Speaking Training">
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="service-card">
-                <div class="service-header">
-                    <span class="service-icon">💼</span>
-                    <h3>Business Pitching</h3>
-                    <p class="service-category">Entrepreneurship & Proposals</p>
-                </div>
-                <div class="service-content">
+    <!-- Facilitation Training Service Detail -->
+    <section class="service-detail" id="facilitation">
+        <div class="container">
+            <div class="service-content reverse">
+                <div class="service-text">
+                    <h2>Facilitation & Group Leadership</h2>
+                    <p>Master the art of guiding productive discussions, workshops, and meetings that achieve meaningful outcomes and foster collaboration among diverse stakeholders.</p>
+                    
                     <ul class="service-features">
-                        <li>Investor pitching workshops for startups</li>
-                        <li>Grant proposal writing and submission strategies</li>
-                        <li>Corporate collaboration proposal development</li>
-                        <li>Negotiation and persuasive communication mastery</li>
-                        <li>Start-up communication strategy coaching</li>
+                        <li>Designing and structuring effective meetings</li>
+                        <li>Techniques for inclusive participation</li>
+                        <li>Managing difficult conversations and conflicts</li>
+                        <li>Consensus-building and decision-making frameworks</li>
+                        <li>Virtual facilitation skills for remote teams</li>
+                        <li>Creative problem-solving methodologies</li>
                     </ul>
-                    <div class="service-pricing">
-                        <div class="price">From R2,000</div>
-                        <div class="price-note">Per session • Corporate rates available</div>
-                    </div>
-                    <a href="contact.html" class="service-cta">Get Started →</a>
+                    
+                    <p>Ideal for team leaders, educators, HR professionals, and anyone responsible for guiding group processes toward productive outcomes.</p>
+                    
+                    <a href="#contact" class="btn btn-primary">Enroll Now</a>
+                </div>
+                
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Facilitation Training">
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="service-card">
-                <div class="service-header">
-                    <span class="service-icon">👥</span>
-                    <h3>Facilitation Excellence</h3>
-                    <p class="service-category">Workshop Leadership</p>
-                </div>
-                <div class="service-content">
+    <!-- Business Communication Service Detail -->
+    <section class="service-detail" id="business">
+        <div class="container">
+            <div class="service-content">
+                <div class="service-text">
+                    <h2>Business Communication & Pitching</h2>
+                    <p>Transform your business communication skills to drive growth, secure funding, and build powerful partnerships through compelling pitches, proposals, and presentations.</p>
+                    
                     <ul class="service-features">
-                        <li>Professional facilitation training programs</li>
-                        <li>Dynamic discussion-leading skills development</li>
-                        <li>Managing diverse viewpoints effectively</li>
-                        <li>Interactive workshop design and delivery</li>
-                        <li>Conflict resolution and consensus-building</li>
+                        <li>Crafting investor-ready pitches and decks</li>
+                        <li>Writing persuasive proposals for grants and partnerships</li>
+                        <li>Sales presentation mastery</li>
+                        <li>Executive presence and leadership communication</li>
+                        <li>Negotiation and influence techniques</li>
+                        <li>Start-up communication coaching</li>
                     </ul>
-                    <div class="service-pricing">
-                        <div class="price">From R1,800</div>
-                        <div class="price-note">Per session • Bulk discounts available</div>
-                    </div>
-                    <a href="contact.html" class="service-cta">Learn More →</a>
+                    
+                    <p>Our business communication programs are specifically designed for entrepreneurs, sales teams, executives, and organizations looking to enhance their competitive edge.</p>
+                    
+                    <a href="#contact" class="btn btn-primary">Enroll Now</a>
+                </div>
+                
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Business Communication Training">
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="service-card">
-                <div class="service-header">
-                    <span class="service-icon">🎓</span>
-                    <h3>Youth Development</h3>
-                    <p class="service-category">Student Programs</p>
-                </div>
-                <div class="service-content">
-                    <ul class="service-features">
-                        <li>University and college leadership programs</li>
-                        <li>Debate and public speaking competitions</li>
-                        <li>Student council communication training</li>
-                        <li>Youth empowerment workshops</li>
-                        <li>Career preparation communication skills</li>
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <h2>Training Programs & Pricing</h2>
+            <p>We offer flexible training options to suit different needs and budgets</p>
+            
+            <div class="pricing-plans">
+                <div class="pricing-plan">
+                    <div class="plan-name">Individual</div>
+                    <div class="plan-price">R1,200<span>/session</span></div>
+                    <ul class="plan-features">
+                        <li>One-on-one personalized coaching</li>
+                        <li>Customized training plan</li>
+                        <li>Flexible scheduling</li>
+                        <li>Video recording and analysis</li>
+                        <li class="disabled">Group workshops</li>
+                        <li class="disabled">Corporate discounts</li>
                     </ul>
-                    <div class="service-pricing">
-                        <div class="price">From R800</div>
-                        <div class="price-note">Per student • School package rates</div>
-                    </div>
-                    <a href="contact.html" class="service-cta">Book Program →</a>
+                    <a href="#contact" class="btn btn-secondary">Get Started</a>
                 </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-header">
-                    <span class="service-icon">🏢</span>
-                    <h3>Corporate Training</h3>
-                    <p class="service-category">Professional Development</p>
-                </div>
-                <div class="service-content">
-                    <ul class="service-features">
-                        <li>Executive presentation skills enhancement</li>
-                        <li>Team communication and collaboration</li>
-                        <li>Client meeting effectiveness training</li>
-                        <li>Leadership communication coaching</li>
-                        <li>Corporate storytelling techniques</li>
+                
+                <div class="pricing-plan featured">
+                    <div class="plan-name">Team Training</div>
+                    <div class="plan-price">R8,500<span>/group</span></div>
+                    <ul class="plan-features">
+                        <li>Up to 10 participants</li>
+                        <li>Tailored to organizational needs</li>
+                        <li>Interactive group activities</li>
+                        <li>Pre- and post-assessment</li>
+                        <li>Follow-up support session</li>
+                        <li class="disabled">Individual coaching sessions</li>
                     </ul>
-                    <div class="service-pricing">
-                        <div class="price">Custom Quote</div>
-                        <div class="price-note">Tailored corporate packages</div>
-                    </div>
-                    <a href="contact.html" class="service-cta">Request Quote →</a>
+                    <a href="#contact" class="btn btn-primary">Get Quote</a>
                 </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-header">
-                    <span class="service-icon">🌟</span>
-                    <h3>One-on-One Coaching</h3>
-                    <p class="service-category">Personalized Training</p>
-                </div>
-                <div class="service-content">
-                    <ul class="service-features">
-                        <li>Individualized communication assessment</li>
-                        <li>Personalized skill development plan</li>
-                        <li>Flexible scheduling options</li>
-                        <li>Ongoing progress tracking and feedback</li>
-                        <li>Confidential coaching sessions</li>
+                
+                <div class="pricing-plan">
+                    <div class="plan-name">Corporate</div>
+                    <div class="plan-price">Custom</div>
+                    <ul class="plan-features">
+                        <li>Organization-wide assessment</li>
+                        <li>Multi-session training program</li>
+                        <li>Leadership communication focus</li>
+                        <li>Measurable ROI tracking</li>
+                        <li>Ongoing support and coaching</li>
+                        <li>Social impact partnership</li>
                     </ul>
-                    <div class="service-pricing">
-                        <div class="price">From R500/hr</div>
-                        <div class="price-note">Package discounts available</div>
-                    </div>
-                    <a href="contact.html" class="service-cta">Start Coaching →</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Us</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Training Formats -->
-        <section class="formats-section fade-in">
-            <div class="section-header">
-                <div class="section-tag">Learning Options</div>
-                <h2 class="section-title">Flexible Training Formats</h2>
-                <p class="section-description">Choose the learning style that works best for your schedule and preferences.</p>
-            </div>
-            <div class="formats-grid">
-                <div class="format-card">
-                    <span class="format-icon">🏢</span>
-                    <h3>In-Person Workshops</h3>
-                    <p>Interactive group sessions at our training facility or your location with hands-on practice and immediate feedback.</p>
-                </div>
-                <div class="format-card">
-                    <span class="format-icon">💻</span>
-                    <h3>Virtual Training</h3>
-                    <p>Live online sessions with expert facilitators, accessible from anywhere with interactive digital collaboration tools.</p>
-                </div>
-                <div class="format-card">
-                    <span class="format-icon">📚</span>
-                    <h3>Self-Paced Courses</h3>
-                    <p>Comprehensive online modules with video lessons, practical exercises, and resources you can complete on your schedule.</p>
-                </div>
-                <div class="format-card">
-                    <span class="format-icon">🤝</span>
-                    <h3>Hybrid Programs</h3>
-                    <p>Combine in-person intensives with ongoing virtual support for comprehensive skill development and practice.</p>
-                </div>
-            </div>
-        </section>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Communication Skills?</h2>
+            <p>Join hundreds of individuals and organizations who have already experienced the Speechcraft Academy difference. Let us help you unlock your full communication potential.</p>
+            <a href="contact.html" class="btn btn-primary">Get in Touch Today</a>
+        </div>
+    </section>
 
-        <!-- Testimonials -->
-        <section class="testimonials-section fade-in">
-            <div class="section-header">
-                <div class="section-tag">Client Feedback</div>
-                <h2 class="section-title">Success Stories</h2>
-                <p class="section-description">Hear from our satisfied clients and program participants.</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">The public speaking program transformed my confidence. I went from avoiding presentations to leading company meetings with ease. The personalized coaching made all the difference in my professional growth.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">TM</div>
-                        <div class="author-info">
-                            <h4>Thabo Mokoena</h4>
-                            <p>Marketing Manager, Tech Solutions</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">SpeechCraft's business pitching workshop helped us secure R500,000 in funding. Their practical approach and real-world exercises prepared us perfectly for high-stakes investor meetings.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SN</div>
-                        <div class="author-info">
-                            <h4>Sarah Ndlovu</h4>
-                            <p>Founder, Green Innovations</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">As a teacher, the facilitation training revolutionized my classroom dynamics. I now lead engaging discussions that keep students actively participating and deeply learning.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">LJ</div>
-                        <div class="author-info">
-                            <h4>Lerato Johnson</h4>
-                            <p>Educator, Johannesburg High School</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process Section -->
-        <section class="process-section fade-in">
-            <div class="process-content">
-                <div class="section-header">
-                    <div class="section-tag">How It Works</div>
-                    <h2 class="section-title">Our Training Process</h2>
-                    <p class="section-description">A structured approach designed to ensure your communication success and measurable results.</p>
-                </div>
-                <div class="process-steps">
-                    <div class="process-step">
-                        <span class="step-number">01</span>
-                        <h3>Assessment</h3>
-                        <p>We begin with a comprehensive evaluation of your current communication skills, challenges, and specific goals.</p>
-                    </div>
-                    <div class="process-step">
-                        <span class="step-number">02</span>
-                        <h3>Customization</h3>
-                        <p>Your training program is tailored to address your unique needs, learning style, and objectives.</p>
-                    </div>
-                    <div class="process-step">
-                        <span class="step-number">03</span>
-                        <h3>Implementation</h3>
-                        <p>Engage in hands-on training with expert facilitators using proven techniques and practical exercises.</p>
-                    </div>
-                    <div class="process-step">
-                        <span class="step-number">04</span>
-                        <h3>Evaluation</h3>
-                        <p>We measure your progress with detailed feedback and ongoing support to ensure continuous improvement.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta-section fade-in">
-            <h2>Ready to Transform Your Communication?</h2>
-            <p>Join hundreds of successful individuals and organizations who have enhanced their communication abilities with SpeechCraft Academy. Let's start your journey to confident, impactful communication today.</p>
-            <div class="cta-buttons">
-                <a href="contact.html" class="btn btn-primary">
-                    <span>Get Started Today</span>
-                    <span>→</span>
-                </a>
-                <a href="contact.html" class="btn btn-secondary">
-                    <span>Request Consultation</span>
-                </a>
-            </div>
-        </section>
-    </div>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2023-2025 SpeechCraft Academy. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; opacity: 0.9;">Empowering voices • Inspiring leaders • Shaping change</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Speechcraft Academy</h3>
+                    <p>Empowering voices, inspiring leaders, and shaping change through confident communication.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="impact.html">Social Impact</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>39 Cnr Arras & Elizabeth street<br>Witbank, 1035</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>071 123 0001</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>amanda@speechcraftacademy.co.za</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Speechcraft Academy. All Rights Reserved. | A Social Enterprise</p>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
         });
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-            });
-        });
-
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
             } else {
-                navbar.classList.remove('scrolled');
+                header.classList.remove('header-scrolled');
             }
-        });
-
-        // Progress bar
-        const progressBar = document.getElementById('progressBar');
-        window.addEventListener('scroll', () => {
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight - windowHeight;
-            const scrollPosition = window.scrollY;
-            const progress = (scrollPosition / documentHeight) * 100;
-            progressBar.style.width = `${progress}%`;
-        });
-
-        // Scroll to top button
-        const scrollToTopBtn = document.getElementById('scrollToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-            }
-        });
-
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
         });
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
                     });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
                 }
             });
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const hero = document.querySelector('.page-hero');
-            const scrolled = window.pageYOffset;
-            if (hero && scrolled < window.innerHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.4}px)`;
-            }
         });
     </script>
 </body>
